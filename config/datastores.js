@@ -53,5 +53,14 @@ module.exports.datastores = {
 
   },
 
+  mysql_connection: {
+    adapter: 'sails-mysql',
+    host: 'localhost',
+    port: 3306,
+    user: 'tpssadmin',
+    password: 'Password',
+    database: 'tpss',
+  }
+
 
 };
