@@ -1,0 +1,51 @@
+html, body, img, form, textarea, input, fieldset, div, p, ul, li, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, code {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  text-align: left;
+  font-size: 1em;
+  height: 100%;
+}
+
+body {
+  font-family: Lato;
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+#headwrapper {
+  display: flex;
+  background-color: #3a4660;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5pt;
+}
+#headtitle {
+   font-family: Ubuntu;
+   display: flex;
+   align-items: center;
+   font-size: 12pt;
+   font-weight: bold;
+   color: #c9af98;
+ }
+#navmenu {
+  font-family: 'Source Sans Pro';
+  border-spacing: 20px;
+  margin-left: 40pt;
+  font-size: 13pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ed8a63;
+}
+
+#navmenu td:hover {
+  color: #f0f0f0;
+  cursor: pointer;
+}
+

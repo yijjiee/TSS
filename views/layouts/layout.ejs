@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>New Sails App</title>
+    <title>Timetable Scheduler</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <!-- External Stylesheets (Fonts) -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
     <!--
         Stylesheets and Preprocessors
@@ -29,11 +32,30 @@
     -->
 
     <!--STYLES-->
-    <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/master/master.css">
     <!--STYLES END-->
   </head>
 
   <body>
+    <div id="headwrapper">
+      <div id="headtitle">
+        <img src="/images/ntulogo.svg" />
+        <div style="margin-left: 10pt;">
+          <p>Timetable Planning</p>
+          <p>Scheduling System</p>
+        </div>
+      </div>
+      <table id="navmenu">
+        <tr>
+          <td id="navhome" onclick="redirect('/')">Home</td>
+          <td id="navstaff" onclick="redirect('/MaintainStaffs')">Staff</td>
+          <td id="navmod" onclick="redirect('/MaintainModules')">Module</td>
+          <td id="navschedule" onclick="redirect('/Schedule')">Schedule</td>
+          <td id="navimport" onclick="redirect('/Import')">Import</td>
+          <td id="navexport" onclick="redirect('/Export')">Export</td>
+        </tr>
+      </table>
+    </div>
     <%- body %>
 
 
@@ -105,6 +127,8 @@
 
     <!--SCRIPTS-->
     <script src="/dependencies/sails.io.js"></script>
+    <script src="/dependencies/jquery-3.3.1.min.js"></script>
+    <script src="/js/master/master.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
