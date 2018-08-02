@@ -48,11 +48,17 @@
       <table id="navmenu">
         <tr>
           <td id="navhome" onclick="redirect('/')">Home</td>
-          <td id="navstaff" onclick="redirect('/MaintainStaffs')">Staff</td>
-          <td id="navmod" onclick="redirect('/MaintainModules')">Module</td>
-          <td id="navschedule" onclick="redirect('/Schedule')">Schedule</td>
-          <td id="navimport" onclick="redirect('/Import')">Import</td>
-          <td id="navexport" onclick="redirect('/Export')">Export</td>
+          <td id="navstaff" onclick="redirect('/staffs/main')">Staff</td>
+          <td>
+            <span id="navmod" onclick="redirect('/modules/main')">Module</span>
+            <div class="dropdown-content">
+              <p onclick="redirect('/modules/main')">View/Edit</p>
+              <p onclick="redirect('/modules/addnew')">Add New</p>
+            </div>
+          </td>
+          <td id="navschedule" onclick="redirect('/schedule')">Schedule</td>
+          <td id="navimport" onclick="redirect('/import')">Import</td>
+          <td id="navexport" onclick="redirect('/export')">Export</td>
         </tr>
       </table>
     </div>

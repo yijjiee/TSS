@@ -27,8 +27,12 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
-  '/MaintainModules': {
-    view: 'pages/module'
+  // Modules pages starts here
+  '/modules/main': {
+    view: 'pages/modules/main'
+  },
+  '/modules/addnew': {
+    view: 'pages/modules/addnew'
   },
 
   /***************************************************************************

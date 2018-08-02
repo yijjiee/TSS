@@ -49,3 +49,22 @@ p {
   cursor: pointer;
 }
 
+#navmenu td:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #3a4660;
+  min-width: 140px;
+  box-shadow: 0px 6px 12px 0px #000000;
+  padding: 12px 16px;
+  z-index: 1;
+  color: #ed8a63;
+}
+
+.dropdown-content p:hover {
+  color: white;
+}
+

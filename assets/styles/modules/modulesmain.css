@@ -1,79 +1,101 @@
-#colorbar {
-  background-color: #118798;
-  padding: 60px 0px 35px;
-}
-
-#pagetitle {
-  font-family: Poppins;
-  font-weight: 900;
-  font-size: 2.5em;
-  color: white;
-  width: 80%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-#pagesubtitle {
-  font-family: Poppins;
-  font-weight: 300;
-  font-size: 1em;
-  color: #c0c0c0;
-  width: 80%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-
-
-.placeholder_main {
-  display: flex;
-  margin: 10pt auto 10pt auto;
-  width: 80%;
-  max-width: 1200px;
-  flex: 1;
-}
-
-.module_details {
-  min-width: 350px;
-  width: 50%;
-}
-
-.module_details td {
+.modules_list_wrapper {
   font-family: "Roboto";
-  padding: 15px 0px 15px 0px;
-  font-weight: 500;
-  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  border-right: 3px solid #c9af98;
+  padding-right: 20px;
 }
-
-#module_title {
-  padding: 20px 0px 20px 0px;
-  font-size: 2em;
-  font-weight: bold;
-}
-
-
 
 .modules_list {
   display: flex;
   flex-direction: column;
-  padding: 0pt 0pt 0pt 60px;
+  margin-bottom: 10px;
+  padding-right: 20px;
+  flex: 1;
   overflow: auto;
-  border-left: 3px solid #c9af98;
+  max-width: 300px;
 }
 
 #listtitle {
-  font-size: 2em;
+  font-size: 1.8vw;
   font-weight: bold;
-  padding: 20px 0px 20px 0px;
+  padding: 10px 0px 10px 0px;
 }
 
 .modules_list p {
-  font-family: "Roboto";
-  padding: 5px 20px 5px 5px;
-  margin: 5px 0px 5px 0px;
+  padding: 10px 5px;
   cursor: pointer;
   font-weight: 500;
-  font-size: 1em;
+  font-size: 1vw;
 }
 
+.module_details_wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  flex: 1;
+  font-family: "Roboto";
+  padding: 0px 0px 15px 0px;
+  font-weight: 500;
+  font-size: 1vw;
+}
 
+.module_details_wrapper input[type=text] {
+  border: none;
+  text-align: center;
+  height: fit-content;
+  width: 100%;
+  align-self: center;
+  padding: 10px 0px;
+  justify-self: center;
+}
+
+#module_title {
+  padding: 10px 0px 10px 0px;
+  font-size: 1.8vw;
+  font-weight: bold;
+}
+
+.module_details_wrapper input[type=text]:focus {
+  outline: none;
+  border-bottom: 1px solid crimson;
+}
+
+.module_details_wrapper input[type=text]:disabled {
+  background-color: transparent;
+}
+
+.module_main_details {
+  display: flex;
+  flex-direction: column;
+}
+
+.module_main_details_editable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.module_main_details_editable input[type=text] {
+  width: 50px;
+}
+
+.module_details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.module_details_wrapper h3 {
+  padding: 10px 0px 10px 0px;
+}
+
+.module_details p {
+  padding: 10px 0px 10px 0px;
+}
+
+.module_details textarea {
+  resize: none;
+  width: 16vw;
+  height: 8vw;
+}
