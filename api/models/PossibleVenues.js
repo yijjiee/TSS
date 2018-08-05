@@ -14,7 +14,7 @@ module.exports = {
     lesson_id: {
       model: 'Lesson',
     },
-    venue_name: {
+    venue_id: {
       model: 'Venue',
     },
   },

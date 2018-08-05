@@ -1,0 +1,18 @@
+.placeholder_main {
+  flex-direction: column;
+}
+
+input[type=text] {
+  outline: none;
+  border: 2px solid #c0c0c0;
+  padding: 5px;
+  margin: 1vh 1vw 1vh 0;
+  font-size: 1.8vmin;
+  font-family: Roboto;
+  width: 15vw;
+}
+
+#lec_details, #tut_details, #lab_details {
+  display: none;
+}
+

@@ -1,6 +1,8 @@
+<script type="text/javascript" src="/js/modules/modulesaddnew.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <link href="/styles/modules/modulesmaster.css" type="text/css" rel="stylesheet" />
+<link href="/styles/modules/modulesaddnew.css" type="text/css" rel="stylesheet" />
 
 <div id="colorbar">
   <p id="pagetitle">New Module</p>
@@ -9,5 +11,37 @@
 </div>
 
 <div class="placeholder_main">
+  <h1>Main Details</h1>
+  <form id="module_form" class="main_details_wrapper" action="/module/create" method="post">
+    <input type="text" name="code" placeholder="Module Code" />
+    <input type="text" name="name" placeholder="Module Name" /><br />
+    <input type="text" name="academic_units" placeholder="Academic Units" />
+    <input type="text" name="cohort_size" placeholder="Cohort Size" /><hr /><br />
 
+    <h2 style="display: inline;">Lecture Details</h2>&emsp;<img id="add_lec_details" src="/images/icons/add.svg" width="25vmin" onclick="add_lesson_details($('#lec_details'),this);" /><br />
+    <div id="lec_details">
+      <input type="text" name="lec_lessons" placeholder="No. of Lesson(s)" />
+      <input type="text" name="lec_freq" placeholder="Frequency" /><br />
+      <input type="text" name="lec_venues" placeholder="Possible Venues" />
+      <input type="text" name="lec_groups" placeholder="Groups Assigned" /><br />
+    </div>
+
+    <h2 style="display: inline;">Tutorial Details</h2>&emsp;<img id="add_lec_details" src="/images/icons/add.svg" width="25vmin" onclick="add_lesson_details($('#tut_details'),this);" /><br />
+    <div id="tut_details">
+      <input type="text" id="tut_lessons" placeholder="No. of Lesson(s)" />
+      <input type="text" id="tut_freq" placeholder="Frequency" /><br />
+      <input type="text" id="tut_venues" placeholder="Possible Venues" />
+      <input type="text" id="tut_groups" placeholder="Groups Assigned" />
+    </div>
+
+    <h2 style="display: inline;">Laboratory Details</h2>&emsp;<img id="add_lec_details" src="/images/icons/add.svg" width="25vmin" onclick="add_lesson_details($('#lab_details'),this);" /><br />
+    <div id="lab_details">
+      <input type="text" id="lab_freqnum" placeholder="No. of Lesson(s)" />
+      <input type="text" id="lab_freq" placeholder="Frequency" /><br />
+      <input type="text" id="lab_venues" placeholder="Possible Venues" />
+      <input type="text" id="lab_groups" placeholder="Groups Assigned" />
+    </div>
+
+    <input type="submit" />
+  </form>
 </div>

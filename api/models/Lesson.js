@@ -32,8 +32,8 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    // Referencing to Module with code.
-    module_code: {
+    // Referencing to Module with id.
+    module_id: {
       model: 'Module',
     },
     // Referencing to Venue with Possible Venue for a list of possible venues - One lesson can have many possible venues

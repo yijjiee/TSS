@@ -6,7 +6,7 @@
 #pagetitle {
   font-family: Poppins;
   font-weight: 900;
-  font-size: 2.5vw;
+  font-size: 3.5vmin;
   color: white;
   padding-left: 20px;
 }
@@ -14,7 +14,7 @@
 #pagesubtitle {
   font-family: Poppins;
   font-weight: 300;
-  font-size: 1.2vw;
+  font-size: 2vmin;
   color: #c0c0c0;
   padding-left: 20px;
 }
@@ -22,7 +22,7 @@
 #pagesmalltitle {
   font-family: Poppins;
   font-weight: 400;
-  font-size: 1vw;
+  font-size: 1.5vmin;
   color: #606060;
   padding-left: 20px;
 }

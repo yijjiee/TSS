@@ -27,6 +27,14 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
+  '/module': {
+    controller: 'module',
+    action: 'index',
+  },
+  'POST /module/create': {
+    controller: 'module',
+    action: 'create',
+  },
   // Modules pages starts here
   '/modules/main': {
     view: 'pages/modules/main'
