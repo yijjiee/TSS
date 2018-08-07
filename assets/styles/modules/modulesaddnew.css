@@ -2,17 +2,60 @@
   flex-direction: column;
 }
 
-input[type=text] {
-  outline: none;
-  border: 2px solid #c0c0c0;
-  padding: 5px;
-  margin: 1vh 1vw 1vh 0;
-  font-size: 1.8vmin;
-  font-family: Roboto;
-  width: 15vw;
-}
-
 #lec_details, #tut_details, #lab_details {
   display: none;
 }
 
+.form-control {
+  display: inline;
+  width: 250px;
+  margin: 5px 5px 5px 0px;
+}
+
+.custom-select {
+  width: 250px;
+}
+
+.placeholder_main h2 {
+  font-family: "Poppins";
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.subdetails {
+  display: flex;
+  align-items: center;
+}
+
+.subdetails img {
+  margin-left: 10px;
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .placeholder_main h2 {
+    font-size: 26px;
+  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+  .placeholder_main h2 {
+    font-size: 24px;
+  }
+}

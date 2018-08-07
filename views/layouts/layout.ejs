@@ -34,6 +34,7 @@
     -->
 
     <!--STYLES-->
+    <link rel="stylesheet" href="/dependencies/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/master/master.css">
     <!--STYLES END-->
   </head>
@@ -52,10 +53,10 @@
           <td id="navhome" onclick="redirect('/')">Home</td>
           <td id="navstaff" onclick="redirect('/staffs/main')">Staff</td>
           <td>
-            <span id="navmod" onclick="redirect('/modules/main')">Module</span>
+            <span id="navmod" onclick="redirect('/module')">Module</span>
             <div class="dropdown-content">
-              <p onclick="redirect('/modules/main')">View/Edit</p>
-              <p onclick="redirect('/modules/addnew')">Add New</p>
+              <p onclick="redirect('/module')">View/Edit</p>
+              <p onclick="redirect('/module/addnew')">Add New</p>
             </div>
           </td>
           <td id="navschedule" onclick="redirect('/schedule')">Schedule</td>
@@ -63,6 +64,7 @@
           <td id="navexport" onclick="redirect('/export')">Export</td>
         </tr>
       </table>
+      <img id="navicon" src="/images/icons/menu.svg" />
     </div>
     <%- body %>
 
@@ -135,6 +137,7 @@
 
     <!--SCRIPTS-->
     <script src="/dependencies/sails.io.js"></script>
+    <script src="/dependencies/bootstrap.bundle.min.js"></script>
     <script src="/js/master/master.js"></script>
     <!--SCRIPTS END-->
   </body>

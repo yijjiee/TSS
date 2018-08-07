@@ -15,8 +15,9 @@ module.exports = {
       });
     });
   },
-  create: async function(req, res, next) {
-    res.send(req.param("num_lesson_types"));
+  create: async function(req, res) {
+    let lesson_types_length = req.param("num_lesson_types");
+    res.send(req.param("freq"));
     // let module = await Module.create(req.allParams()).fetch();
     //
     // req.params.module_id = module.id;
@@ -37,5 +38,8 @@ module.exports = {
     //   }
     // }
   },
+  'addnew': async function (req, res) {
+    res.view();
+  }
 };
 

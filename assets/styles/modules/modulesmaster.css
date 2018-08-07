@@ -6,7 +6,7 @@
 #pagetitle {
   font-family: Poppins;
   font-weight: 900;
-  font-size: 3.5vmin;
+  font-size: 24pt;
   color: white;
   padding-left: 20px;
 }
@@ -14,7 +14,7 @@
 #pagesubtitle {
   font-family: Poppins;
   font-weight: 300;
-  font-size: 2vmin;
+  font-size: 12pt;
   color: #c0c0c0;
   padding-left: 20px;
 }
@@ -22,7 +22,7 @@
 #pagesmalltitle {
   font-family: Poppins;
   font-weight: 400;
-  font-size: 1.5vmin;
+  font-size: 11pt;
   color: #606060;
   padding-left: 20px;
 }
@@ -37,6 +37,62 @@
 
 .placeholder_main {
   display: flex;
-  padding-left: 20px;
+  padding: 10px 20px;
   flex: 1;
+}
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  #pagetitle {
+    font-size: 20pt;
+  }
+
+  #pagesubtitle {
+    font-size: 10pt;
+  }
+
+  #pagesmalltitle {
+    font-size: 9pt;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  #pagetitle {
+    font-size: 18pt;
+  }
+
+  #pagesubtitle {
+    font-size: 9pt;
+  }
+
+  #pagesmalltitle {
+    font-size: 8pt;
+  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+  #pagetitle {
+    font-size: 16pt;
+  }
+
+  #pagesubtitle {
+    font-size: 8pt;
+  }
+
+  #pagesmalltitle {
+    font-size: 7pt;
+  }
 }

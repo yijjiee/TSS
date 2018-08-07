@@ -1,0 +1,71 @@
+<script type="text/javascript" src="/js/modules/modulesaddnew.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link href="/styles/modules/modulesmaster.css" type="text/css" rel="stylesheet" />
+<link href="/styles/modules/modulesaddnew.css" type="text/css" rel="stylesheet" />
+
+<div id="colorbar">
+  <p id="pagetitle">New Module</p>
+  <p id="pagesubtitle">Add a new module and include the details here.</p>
+  <p id="pagesmalltitle">Just want to view existing modules? Click <a href="/modules/main">here</a>.</p>
+</div>
+
+<div class="placeholder_main">
+  <h2>Essential Information</h2>
+  <form id="module_form" action="/module/create" method="post">
+    <input type="text" class="form-control" name="code" placeholder="Module Code" />
+    <input type="text" class="form-control" name="name" placeholder="Module Name" />
+    <input type="text" class="form-control" name="academic_units" placeholder="Academic Units" />
+    <input type="text" class="form-control" name="cohort_size" placeholder="Cohort Size" /><hr />
+
+    <div class="subdetails">
+      <h2>Lecture Details</h2>
+      <img id="add_lec_details" src="/images/icons/add.svg" width="24px" height="24px" onclick="add_lesson_details($('#lec_details'),this);" />
+    </div>
+    <div id="lec_details">
+      <input type="text" class="form-control" name="lessons" placeholder="No. of Lesson(s)" />
+      <select class="custom-select" name="freq">
+        <option selected>Frequency</option>
+        <option value="Weekly">Weekly</option>
+        <option value="Fortnightly">Fortnightly</option>
+        <option value="Monthly">Monthly</option>
+      </select>
+      <input type="text" class="form-control" name="p_venues" placeholder="Possible Venues" />
+      <input type="text" class="form-control" name="groups" placeholder="Groups Assignment" />
+    </div><hr />
+
+    <div class="subdetails">
+      <h2 style="display: inline;">Tutorial Details</h2>
+      <img id="add_lec_details" src="/images/icons/add.svg" width="25vmin" onclick="add_lesson_details($('#tut_details'),this);" />
+    </div>
+    <div id="tut_details">
+      <input type="text" class="form-control" name="lessons" placeholder="No. of Lesson(s)" />
+      <select class="custom-select" name="freq">
+        <option selected>Frequency</option>
+        <option value="Weekly">Weekly</option>
+        <option value="Fortnightly">Fortnightly</option>
+        <option value="Monthly">Monthly</option>
+      </select>
+      <input type="text" class="form-control" name="p_venues" placeholder="Possible Venues" />
+      <input type="text" class="form-control" name="groups" placeholder="Groups Assignment" />
+    </div><hr />
+
+    <div class="subdetails">
+      <h2 style="display: inline;">Lab Details</h2>
+      <img id="add_lec_details" src="/images/icons/add.svg" width="25vmin" onclick="add_lesson_details($('#lab_details'),this);" />
+    </div>
+    <div id="lab_details">
+      <input type="text" class="form-control" name="lessons" placeholder="No. of Lesson(s)" />
+      <select class="custom-select" name="freq">
+        <option selected>Frequency</option>
+        <option value="Weekly">Weekly</option>
+        <option value="Fortnightly">Fortnightly</option>
+        <option value="Monthly">Monthly</option>
+      </select>
+      <input type="text" class="form-control" name="p_venues" placeholder="Possible Venues" />
+      <input type="text" class="form-control" name="groups" placeholder="Groups Assignment" />
+    </div><hr />
+
+    <input type="submit" class="btn btn-info" />
+  </form>
+</div>

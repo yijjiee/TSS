@@ -10,7 +10,7 @@ html, body {
 }
 
 body {
-  font-family: Lato;
+  font-family: Roboto;
   display: flex;
   flex-direction: column;
 }
@@ -18,6 +18,8 @@ body {
 p {
   line-height: 1.5em;
 }
+
+
 
 #headwrapper {
   display: flex;
@@ -27,21 +29,28 @@ p {
   padding: 5pt;
 }
 #headtitle {
-   font-family: Ubuntu;
-   display: flex;
-   align-items: center;
-   font-size: 12pt;
-   font-weight: bold;
-   color: #c9af98;
- }
+  font-family: 'Source Sans Pro';
+  display: flex;
+  align-items: center;
+  font-size: 12pt;
+  font-weight: bold;
+  color: #c9af98;
+}
+
+#navicon {
+  display: none;
+}
+
 #navmenu {
   font-family: 'Source Sans Pro';
-  border-spacing: 20px;
-  margin-left: 40pt;
-  font-size: 13pt;
+  font-size: 12pt;
   font-weight: bold;
   text-transform: uppercase;
   color: #ed8a63;
+}
+
+#navmenu td {
+  padding: 0px 8px;
 }
 
 #navmenu td:hover {
@@ -66,5 +75,54 @@ p {
 
 .dropdown-content p:hover {
   color: white;
+}
+
+
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  #navicon {
+    display: inline;
+    width: 28px;
+    height: 28px;
+  }
+  #navmenu {
+    display: none;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  #navicon {
+    display: inline;
+    width: 24px;
+    height: 24px;
+  }
+  #navmenu {
+    display: none;
+  }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+  #navicon {
+    display: inline;
+    width: 24px;
+    height: 24px;
+  }
+  #navmenu {
+    display: none;
+  }
 }
 

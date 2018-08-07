@@ -6,7 +6,7 @@ $(document).ready(function() {
     $("#navhome").css("border-top", "3px solid #ed8a63");
   else if (xpath[1] == "staffs")
     $("#navstaff").css("border-top", "3px solid #ed8a63");
-  else if (xpath[1] == "modules")
+  else if (xpath[1] == "module")
     $("#navmod").css("border-top", "3px solid #ed8a63");
   else if (xpath[1] == "schedule")
     $("#navschedule").css("border-top", "3px solid #ed8a63");
