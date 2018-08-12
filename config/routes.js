@@ -35,13 +35,6 @@ module.exports.routes = {
     controller: 'module',
     action: 'create',
   },
-  // Modules pages starts here
-  '/modules/main': {
-    view: 'pages/modules/main'
-  },
-  '/modules/addnew': {
-    view: 'pages/modules/addnew'
-  },
 
   /***************************************************************************
   *                                                                          *

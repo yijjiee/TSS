@@ -11,6 +11,11 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+    id: {
+      type: 'number',
+      autoIncrement: true,
+      unique: true,
+    },
     study_year_sem: {
       type: 'string',
       required: true,

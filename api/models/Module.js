@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-
+  primaryKey: 'code',
   attributes: {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
@@ -39,7 +39,7 @@ module.exports = {
     // Foreign Key Reference - One module can have many lessons (3 max)
     lessons: {
       collection: 'lesson',
-      via: 'module_id',
+      via: 'module_code',
     },
   },
 

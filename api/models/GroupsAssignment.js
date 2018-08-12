@@ -1,5 +1,5 @@
 /**
- * StaffAllocation.js
+ * GroupsAssignment.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -16,10 +16,6 @@ module.exports = {
       autoIncrement: true,
       unique: true,
     },
-    teaching_weeks: {
-      type: 'number',
-      required: true,
-    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -29,14 +25,12 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    staff_id: {
-      model: 'Staff',
-      required: true,
+    lesson_id: {
+      model: 'lesson',
     },
-    lesson_allocation_id: {
-      model: 'LessonAllocation',
-      required: true,
-    }
+    group_index: {
+      model: 'group',
+    },
   },
 
 };

@@ -11,6 +11,11 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+    id: {
+      type: 'number',
+      autoIncrement: true,
+      unique: true,
+    },
     start_time: {
       type: 'ref',
       columnType: 'datetime',

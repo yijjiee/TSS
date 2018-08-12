@@ -11,6 +11,11 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+    id: {
+      type: 'number',
+      autoIncrement: true,
+      unique: true,
+    },
     lesson_type: {
       type: 'string',
       required: true,
@@ -32,14 +37,20 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    // Referencing to Module with id.
-    module_id: {
+    // Referencing to Module with code.
+    module_code: {
       model: 'Module',
     },
     // Referencing to Venue with Possible Venue for a list of possible venues - One lesson can have many possible venues
     possible_venues: {
-      collection: 'PossibleVenues',
+      collection: 'venue',
       via: 'lesson_id',
+      through: 'possiblevenues',
+    },
+    groups_assigned: {
+      collection: 'group',
+      via: 'lesson_id',
+      through: 'groupsassignment',
     },
   },
 

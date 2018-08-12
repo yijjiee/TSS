@@ -1,3 +1,4 @@
+<script type="text/javascript" src="/js/modules/modulesmain.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <link href="/styles/modules/modulesmaster.css" type="text/css" rel="stylesheet" />
@@ -6,7 +7,7 @@
 <div id="colorbar">
   <p id="pagetitle">Modules Management</p>
   <p id="pagesubtitle">View and edit the details of a Module here.</p>
-  <p id="pagesmalltitle">Want to add new modules? Click <a href="/modules/addnew">here</a>.</p>
+  <p id="pagesmalltitle">Want to add new modules? Click <a href="/module/addnew">here</a>.</p>
 </div>
 
 <div class="placeholder_main">
@@ -14,40 +15,40 @@
     <p id="listtitle">Modules List</p>
     <div class="modules_list">
       <% _.each(modules, function(module) {%>
-      <p><%= module.code %> - <%= module.name %></p>
+      <p onclick="selectModule(this);" id="<%= module.code %>" aria-selected="false"><%= module.code %> - <%= module.name %></p>
       <% }); %>
     </div>
   </div>
 
   <div class="module_details_wrapper">
-    <p id="module_title">CE1005 - Digital Logic</p>
+    <p id="module_title"></p>
     <div class="module_main_details_editable">
-      <p>Year of study:</p><input type="text" disabled id="moduleyear" value="1" />
+      <p>Module year:</p><input type="text" disabled id="moduleyear" value="1" />
       <p>Academic units:</p><input type="text" disabled id="moduleau" value="3" />
       <p>Cohort size:</p><input type="text" disabled id="modulecohort" value="250" />
     </div>
     <div class="class_details">
-      <div class="class_wrapper">
+      <div class="class_wrapper" id="lec_wrapper">
         <h3 style="grid-column-start: 1; grid-column-end: 3;">Lecture Related</h3>
         <p>Frequency:</p><input type="text" disabled id="lecfreq" value="Weekly" />
         <p style="grid-column-start: 1; grid-column-end: 3;">Possible Venues:</p>
-        <textarea style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
+        <textarea id="lec_pvenues_textarea" style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
         <p style="grid-column-start: 1; grid-column-end: 3;">Groups Assigned:</p>
         <textarea style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
       </div>
-      <div class="class_wrapper">
+      <div class="class_wrapper" id="tut_wrapper">
         <h3 style="grid-column-start: 1; grid-column-end: 3;">Tutorial Related</h3>
         <p>Frequency:</p><input type="text" disabled id="tutfreq" value="Weekly" />
         <p style="grid-column-start: 1; grid-column-end: 3;">Possible Venues:</p>
-        <textarea style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
+        <textarea id="tut_pvenues_textarea" style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
         <p style="grid-column-start: 1; grid-column-end: 3;">Groups Assigned:</p>
         <textarea style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
       </div>
-      <div class="class_wrapper">
+      <div class="class_wrapper" id="lab_wrapper">
         <h3 style="grid-column-start: 1; grid-column-end: 3;">Lab Related</h3>
         <p>Frequency:</p><input type="text" disabled id="labfreq" value="Fortnightly" />
         <p style="grid-column-start: 1; grid-column-end: 3;">Possible Venues:</p>
-        <textarea style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
+        <textarea id="lab_pvenues_textarea" style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
         <p style="grid-column-start: 1; grid-column-end: 3;">Groups Assigned:</p>
         <textarea style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
       </div>

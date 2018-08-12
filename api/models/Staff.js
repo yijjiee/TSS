@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-
+  primaryKey: 'staff_id',
   attributes: {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗

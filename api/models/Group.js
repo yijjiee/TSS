@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-
+  primaryKey: 'group_index',
   attributes: {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
@@ -14,12 +14,11 @@ module.exports = {
     group_index: {
       type: 'string',
       required: true,
-      unique: true,
     },
     group_size: {
       type: 'number',
       required: true,
-    }
+    },
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
@@ -28,7 +27,11 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-
+    lessons: {
+      collection: 'lesson',
+      via: 'group_index',
+      through: 'groupsassignment',
+    },
   },
 
 };

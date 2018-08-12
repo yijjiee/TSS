@@ -7,31 +7,42 @@
 <div id="colorbar">
   <p id="pagetitle">New Module</p>
   <p id="pagesubtitle">Add a new module and include the details here.</p>
-  <p id="pagesmalltitle">Just want to view existing modules? Click <a href="/modules/main">here</a>.</p>
+  <p id="pagesmalltitle">Just want to view existing modules? Click <a href="/module">here</a>.</p>
 </div>
 
 <div class="placeholder_main">
   <h2>Essential Information</h2>
   <form id="module_form" action="/module/create" method="post">
-    <input type="text" class="form-control" name="code" placeholder="Module Code" />
-    <input type="text" class="form-control" name="name" placeholder="Module Name" />
-    <input type="text" class="form-control" name="academic_units" placeholder="Academic Units" />
-    <input type="text" class="form-control" name="cohort_size" placeholder="Cohort Size" /><hr />
+    <input type="text" class="form-control" name="code" placeholder="Module Code" required />
+    <input type="text" class="form-control" name="name" placeholder="Module Name" required />
+    <input type="text" class="form-control" name="academic_units" placeholder="Academic Units" required />
+    <input type="text" class="form-control" name="cohort_size" placeholder="Cohort Size" required /><hr />
 
     <div class="subdetails">
       <h2>Lecture Details</h2>
       <img id="add_lec_details" src="/images/icons/add.svg" width="24px" height="24px" onclick="add_lesson_details($('#lec_details'),this);" />
     </div>
     <div id="lec_details">
-      <input type="text" class="form-control" name="lessons" placeholder="No. of Lesson(s)" />
-      <select class="custom-select" name="freq">
-        <option selected>Frequency</option>
+      <input type="text" class="form-control" name="num_of_lessons" placeholder="No. of Lesson(s)" />
+      <select class="custom-select" name="frequency">
+        <option selected disabled>Frequency</option>
         <option value="Weekly">Weekly</option>
         <option value="Fortnightly">Fortnightly</option>
         <option value="Monthly">Monthly</option>
       </select>
-      <input type="text" class="form-control" name="p_venues" placeholder="Possible Venues" />
-      <input type="text" class="form-control" name="groups" placeholder="Groups Assignment" />
+      <div class="input-group">
+        <input type="text" class="form-control" name="possible_venues" placeholder="Possible Venues" readonly />
+        <div class="input-group-append">
+          <button type="button" id="lec_venue_btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#venues_modal" data-lessontype="LT">Choose</button>
+        </div>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" name="groups" placeholder="Groups Assignment" data-ginput="LT" readonly />
+        <div class="input-group-append">
+          <button type="button" id="lec_group_btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#groups_modal" data-lessontype="LT">Choose</button>
+        </div>
+      </div>
+      <input type="hidden" name="lesson_type" value="LEC" />
     </div><hr />
 
     <div class="subdetails">
@@ -39,15 +50,26 @@
       <img id="add_lec_details" src="/images/icons/add.svg" width="25vmin" onclick="add_lesson_details($('#tut_details'),this);" />
     </div>
     <div id="tut_details">
-      <input type="text" class="form-control" name="lessons" placeholder="No. of Lesson(s)" />
-      <select class="custom-select" name="freq">
-        <option selected>Frequency</option>
+      <input type="text" class="form-control" name="num_of_lessons" placeholder="No. of Lesson(s)" />
+      <select class="custom-select" name="frequency">
+        <option selected disabled>Frequency</option>
         <option value="Weekly">Weekly</option>
         <option value="Fortnightly">Fortnightly</option>
         <option value="Monthly">Monthly</option>
       </select>
-      <input type="text" class="form-control" name="p_venues" placeholder="Possible Venues" />
-      <input type="text" class="form-control" name="groups" placeholder="Groups Assignment" />
+      <div class="input-group">
+        <input type="text" class="form-control" name="possible_venues" placeholder="Possible Venues" readonly />
+        <div class="input-group-append">
+          <button type="button" id="tut_venue_btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#venues_modal" data-lessontype="TR">Choose</button>
+        </div>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" name="groups" placeholder="Groups Assignment" data-ginput="TR" readonly />
+        <div class="input-group-append">
+          <button type="button" id="tut_group_btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#groups_modal" data-lessontype="TR">Choose</button>
+        </div>
+      </div>
+      <input type="hidden" name="lesson_type" value="TUT" />
     </div><hr />
 
     <div class="subdetails">
@@ -55,17 +77,77 @@
       <img id="add_lec_details" src="/images/icons/add.svg" width="25vmin" onclick="add_lesson_details($('#lab_details'),this);" />
     </div>
     <div id="lab_details">
-      <input type="text" class="form-control" name="lessons" placeholder="No. of Lesson(s)" />
-      <select class="custom-select" name="freq">
-        <option selected>Frequency</option>
+      <input type="text" class="form-control" name="num_of_lessons" placeholder="No. of Lesson(s)" />
+      <select class="custom-select" name="frequency">
+        <option selected disabled>Frequency</option>
         <option value="Weekly">Weekly</option>
         <option value="Fortnightly">Fortnightly</option>
         <option value="Monthly">Monthly</option>
       </select>
-      <input type="text" class="form-control" name="p_venues" placeholder="Possible Venues" />
-      <input type="text" class="form-control" name="groups" placeholder="Groups Assignment" />
+      <div class="input-group">
+        <input type="text" class="form-control" name="possible_venues" placeholder="Possible Venues" readonly />
+        <div class="input-group-append">
+          <button type="button" id="lab_venue_btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#venues_modal" data-lessontype="LAB">Choose</button>
+        </div>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" name="groups" placeholder="Groups Assignment" data-ginput="LAB" readonly />
+        <div class="input-group-append">
+          <button type="button" id="lab_group_btn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#groups_modal" data-lessontype="LAB">Choose</button>
+        </div>
+      </div>
+      <input type="hidden" name="lesson_type" value="LAB" />
     </div><hr />
 
     <input type="submit" class="btn btn-info" />
   </form>
+  <div class="modal fade" id="venues_modal" tabindex="-1" role="dialog" aria-labelledby="modal_title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modal_title">Possible Venues Selection</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="possible_venues_list">
+          <% venues.forEach(function(venue) { %>
+          <div class="form-check">
+            <input class="form-check-input" name="venue_cb" type="checkbox" id="<%= venue.name %>" value="<%= venue.name %>" alt="<%= venue.venue_type %>" />
+            <label class="form-check-label" for="<%= venue.id %>"><%= venue.name %> - <%= venue.capacity %></label>
+          </div>
+          <% }); %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="save_venues(this);">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="groups_modal" tabindex="-1" role="dialog" aria-labelledby="modal_title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modal_title">Groups Selection</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="group_list">
+          <% groups.forEach(function(group) { %>
+          <div class="form-check">
+            <input class="form-check-input" name="group_cb" type="checkbox" id="<%= group.group_index %>" value="<%= group.group_index %>" />
+            <label class="form-check-label" for="<%= group.group_index %>"><%= group.group_index %> - <%= group.group_size %></label>
+          </div>
+          <% }); %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="save_groups(this);">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

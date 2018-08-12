@@ -12,14 +12,29 @@
   margin: 5px 5px 5px 0px;
 }
 
+.input-group {
+  width: 250px;
+  display: inline-flex;
+}
+.input-group>.form-control {
+  margin: 0px;
+}
+
 .custom-select {
   width: 250px;
+  margin: 2px 5px 5px 0px;
 }
 
 .placeholder_main h2 {
   font-family: "Poppins";
   font-weight: bold;
   font-size: 30px;
+}
+
+.placeholder_main h3 {
+  font-family: "Poppins";
+  font-weight: bold;
+  font-size: 25px;
 }
 
 .subdetails {
@@ -29,6 +44,11 @@
 
 .subdetails img {
   margin-left: 10px;
+}
+
+#possible_venues_list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 /* Large Devices, Wide Screens */
