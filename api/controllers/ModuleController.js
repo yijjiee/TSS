@@ -76,6 +76,9 @@ module.exports = {
       venues: venues,
       groups: groups,
     });
-  }
+  },
+  'import': async function(req, res) {
+    res.view();
+  },
 };
 
