@@ -80,5 +80,68 @@ module.exports = {
   'import': async function(req, res) {
     res.view();
   },
+  'uploadFile': async function(req, res) {
+    req.file("moduleFile").upload({
+        dirname: require('path').resolve(sails.config.appPath, 'assets/uploads'),
+        saveAs: req.file("moduleFile")._files[0].stream.filename,
+      },
+      function (err, uploadedFile) {
+        if (err) {
+          return res.serverError(err);
+        } else {
+          let moduleFilename = uploadedFile[0].filename;
+          res.json(moduleFilename);
+          let xtension = moduleFilename.slice(moduleFilename.lastIndexOf(".") + 1, moduleFilename.length);
+
+          let Excel = require('exceljs');
+          let path = require('path');
+          let filePath = path.resolve("assets/uploads", moduleFilename);
+          console.log(filePath);
+
+          if (xtension == "xlsx")
+          {
+            let workbook = new Excel.Workbook();
+            workbook.xlsx.readFile(filePath)
+              .then(function() {
+                let worksheet = workbook.getWorksheet(1);
+                for (let row_index = 1; row_index <= worksheet.rowCount; row_index++) {
+                  let row = worksheet.getRow(row_index);
+                  let cell_values = [];
+                  for (let cell_index = 1; cell_index <= row.cellCount; cell_index++) {
+                    let cell = row.getCell(cell_index);
+                    cell_values.push(cell.value);
+                  }
+                  console.log(cell_values);
+                }
+                // worksheet.eachRow({includeEmpty: true}, function(row, rowNumber) {
+                //   let currRow = worksheet.getRow(rowNumber);
+                //   let module_code = currRow.getCell(1).value;
+                //   let module_name = currRow.getCell(2).value;
+                //   let academic_units = currRow.getCell(3).value;
+                //   let cohort_size = currRow.getCell(4).value;
+                //   let lec_lessons = currRow.getCell(5).value;
+                //   let lec_possible_venues = currRow.getCell(6).value;
+                //   let lec_freq = currRow.getCell(7).value;
+                // });
+              })
+              .then(function() {
+                const filesystem = require('fs');
+                filesystem.unlink("assets/uploads/" + moduleFilename, function(err) {
+                  if (err)
+                    res.serverError(err);
+                });
+              });
+          }
+          else if (xtension == "csv")
+          {
+
+          }
+          else
+          {
+            res.serverError();
+          }
+        }
+    });
+  }
 };
 
