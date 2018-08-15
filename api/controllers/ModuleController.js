@@ -5,7 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-module.exports = {
+let self = module.exports = {
   index: async function (req, res) {
     let modules = await Module.find({});
       // .populate("lessons")
@@ -102,16 +102,56 @@ module.exports = {
           {
             let workbook = new Excel.Workbook();
             workbook.xlsx.readFile(filePath)
-              .then(function() {
+              .then(async function() {
                 let worksheet = workbook.getWorksheet(1);
                 for (let row_index = 1; row_index <= worksheet.rowCount; row_index++) {
                   let row = worksheet.getRow(row_index);
-                  let cell_values = [];
-                  for (let cell_index = 1; cell_index <= row.cellCount; cell_index++) {
-                    let cell = row.getCell(cell_index);
-                    cell_values.push(cell.value);
+
+                  let module = await Module.create({
+                    code: row.getCell(1).value,
+                    name: row.getCell(2).value,
+                    academic_units: row.getCell(3).value,
+                    cohort_size: row.getCell(4).value,
+                  }).fetch();
+
+                  if (row.getCell(5).value > 0) {
+                    let lesson = await Lesson.create({
+                      lesson_type: "LEC",
+                      num_of_lessons: row.getCell(5).value,
+                      frequency: row.getCell(7).value,
+                      module_code: module.code,
+                    }).fetch();
+
+                    if (lesson) {
+                      self.createLessons(row, lesson, 6, 8);
+                    }
                   }
-                  console.log(cell_values);
+
+                  if (row.getCell(9).value > 0) {
+                    let lesson = await Lesson.create({
+                      lesson_type: "TUT",
+                      num_of_lessons: row.getCell(9).value,
+                      frequency: row.getCell(11).value,
+                      module_code: module.code,
+                    }).fetch();
+
+                    if (lesson) {
+                      self.createLessons(row, lesson, 10, 12);
+                    }
+                  }
+
+                  if (row.getCell(13).value > 0) {
+                    let lesson = await Lesson.create({
+                      lesson_type: "LAB",
+                      num_of_lessons: row.getCell(13).value,
+                      frequency: row.getCell(15).value,
+                      module_code: module.code,
+                    }).fetch();
+
+                    if (lesson) {
+                      self.createLessons(row, lesson, 14, 16);
+                    }
+                  }
                 }
                 // worksheet.eachRow({includeEmpty: true}, function(row, rowNumber) {
                 //   let currRow = worksheet.getRow(rowNumber);
@@ -142,6 +182,28 @@ module.exports = {
           }
         }
     });
-  }
+  },
+
+
+  createLessons: async function (row, lesson, venues_index, group_index) {
+    let venue_arr = row.getCell(venues_index).value.toString().split(",");
+    let group_arr = row.getCell(group_index).value.toString().split(",");
+
+    for (let i = 0; i < venue_arr.length; i++) {
+      let venue = await Venue.findOne({name: venue_arr[i]});
+      await PossibleVenues.create({
+        lesson_id: lesson.id,
+        venue_id: venue.id,
+      });
+    }
+
+    for (let i = 0; i < group_arr.length; i++) {
+      let group = await Group.findOne({group_index: group_arr[i]});
+       await GroupsAssignment.create({
+        lesson_id: lesson.id,
+        group_index: group.group_index,
+      });
+    }
+  },
 };
 
