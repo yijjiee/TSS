@@ -27,14 +27,39 @@ module.exports.routes = {
   '/': {
     view: 'pages/homepage'
   },
+
+  /**
+   * Modules related route
+   **/
   '/module': {
     controller: 'module',
     action: 'index',
+  },
+  '/module/addnew': {
+    controller: 'module',
+    action: 'addnew',
   },
   'POST /module/create': {
     controller: 'module',
     action: 'create',
   },
+  '/import/module': {
+    controller: 'module',
+    action: 'import',
+  },
+  '/module/uploadFile': {
+    controller: 'module',
+    action: 'uploadFile',
+  },
+
+  /**
+   * Lessons related route
+   **/
+  'POST /lesson/show': {
+    controller: 'lesson',
+    action: 'show',
+  },
+
 
   /***************************************************************************
   *                                                                          *
