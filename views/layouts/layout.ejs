@@ -34,8 +34,7 @@
     -->
 
     <!--STYLES-->
-    <link rel="stylesheet" href="/dependencies/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/master/master.css">
+    <link rel="stylesheet" href="/min/production.min.css">
     <!--STYLES END-->
   </head>
 
@@ -63,14 +62,18 @@
           <td>
             <span id="navimport" onclick="redirect('/import')">Import</span>
             <div class="dropdown-content-right">
+              <p onclick="redirect('/import/STARS')">STARS</p>
               <p onclick="redirect('/import/module')">Modules</p>
-              <p onclick="redirect('/import/staff')">Staff</p>
+              <p onclick="redirect('/import/staff')">Staffs</p>
+              <p onclick="redirect('/import/group')">Groups</p>
             </div></td>
           <td>
             <span id="navexport" onclick="redirect('/export')">Export</span>
             <div class="dropdown-content-right">
+              <p onclick="redirect('/export/STARS')">STARS</p>
               <p onclick="redirect('/export/module')">Modules</p>
-              <p onclick="redirect('/export/staff')">Staff</p>
+              <p onclick="redirect('/export/staff')">Staffs</p>
+              <p onclick="redirect('/export/group')">Groups</p>
             </div></td>
         </tr>
       </table>
@@ -146,9 +149,7 @@
     -->
 
     <!--SCRIPTS-->
-    <script src="/dependencies/sails.io.js"></script>
-    <script src="/dependencies/bootstrap.bundle.min.js"></script>
-    <script src="/js/master/master.js"></script>
+    <script src="/min/production.min.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

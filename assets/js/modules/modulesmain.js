@@ -35,7 +35,7 @@ function selectModule(element) {
             let possible_venues = "";
 
             $("#lecfreq").val(lessons[i].frequency);
-            for (j in lessons[i].possible_venues) {
+            for (let j in lessons[i].possible_venues) {
               possible_venues += lessons[i].possible_venues[j].name;
               if (j != lessons[i].possible_venues.length - 1)
                 possible_venues += ",";
@@ -47,7 +47,7 @@ function selectModule(element) {
             let possible_venues = "";
 
             $("#tutfreq").val(lessons[i].frequency);
-            for (j in lessons[i].possible_venues) {
+            for (let j in lessons[i].possible_venues) {
               possible_venues += lessons[i].possible_venues[j].name;
               if (j != lessons[i].possible_venues.length - 1)
                 possible_venues += ",";
@@ -59,7 +59,7 @@ function selectModule(element) {
             let possible_venues = "";
 
             $("#labfreqfreq").val(lessons[i].frequency);
-            for (j in lessons[i].possible_venues) {
+            for (let j in lessons[i].possible_venues) {
               possible_venues += lessons[i].possible_venues[j].name;
               if (j != lessons[i].possible_venues.length - 1)
                 possible_venues += ",";

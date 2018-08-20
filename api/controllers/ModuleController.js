@@ -95,7 +95,6 @@ let self = module.exports = {
           let Excel = require('exceljs');
           let path = require('path');
           let filePath = path.resolve("assets/uploads", moduleFilename);
-          console.log(filePath);
 
           if (xtension == "xlsx")
           {
@@ -182,6 +181,7 @@ let self = module.exports = {
                   if (err)
                     res.serverError(err);
                 });
+                res.redirect("/module");
               });
           }
           else if (xtension == "csv")
@@ -200,7 +200,6 @@ let self = module.exports = {
   createLessons: async function (row, lesson, venues_index, group_index) {
     let venue_arr = row.getCell(venues_index).value.toString().split(",");
     let group_arr = row.getCell(group_index).value.toString().split(",");
-    console.log(venue_arr);
     for (let i = 0; i < venue_arr.length; i++) {
       try {
         let venue = await Venue.findOne({name: venue_arr[i].trim()});

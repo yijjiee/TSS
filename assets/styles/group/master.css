@@ -1,0 +1,36 @@
+#colorbar {
+  background-color: #368cbf;
+  padding: 25px 0px 15px;
+}
+
+#pagetitle {
+  font-family: Poppins;
+  font-weight: 900;
+  font-size: 24pt;
+  color: white;
+  padding-left: 20px;
+}
+
+#pagesubtitle {
+  font-family: Poppins;
+  font-weight: 300;
+  font-size: 12pt;
+  color: #c0c0c0;
+  padding-left: 20px;
+}
+
+#pagesmalltitle {
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 11pt;
+  color: #606060;
+  padding-left: 20px;
+}
+
+#pagesmalltitle a {
+  color: white;
+}
+
+#pagesmalltitle a:hover {
+  color: #c0c0c0;
+}

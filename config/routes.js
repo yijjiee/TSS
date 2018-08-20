@@ -47,7 +47,7 @@ module.exports.routes = {
     controller: 'module',
     action: 'import',
   },
-  '/module/uploadFile': {
+  'POST /module/uploadFile': {
     controller: 'module',
     action: 'uploadFile',
   },
@@ -60,6 +60,18 @@ module.exports.routes = {
     action: 'show',
   },
 
+
+  /**
+   * Groups related route
+   **/
+  '/import/group': {
+    controller: 'group',
+    action: 'import',
+  },
+  'POST /group/uploadFile': {
+    controller: 'group',
+    action: 'uploadFile',
+  },
 
   /***************************************************************************
   *                                                                          *
