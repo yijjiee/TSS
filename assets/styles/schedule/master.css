@@ -1,0 +1,9 @@
+.placeholder_main {
+  display: flex;
+  padding: 10px 20px;
+  flex: 1;
+}
+
+.fc-today {
+  background: #FFF !important;
+}
