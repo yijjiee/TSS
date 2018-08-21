@@ -73,6 +73,14 @@ module.exports.routes = {
     action: 'uploadFile',
   },
 
+
+  /**
+   * Schedule related route
+   **/
+  '/schedule': {
+    view: 'schedule/schedule_timetable',
+  },
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
