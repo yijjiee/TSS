@@ -1,9 +1,76 @@
 .placeholder_main {
   display: flex;
+  flex-direction: column;
   padding: 10px 20px;
   flex: 1;
 }
 
 .fc-today {
   background: #FFF !important;
+}
+
+.calendar_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.header-title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.calendar-view-wrapper {
+  display: inline;
+}
+
+.nav-wrapper {
+  display: none;
+}
+
+.calendar_table {
+  display: flex;
+  flex-direction: column;
+}
+
+.ct_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.day_slot {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  width: 300px;
+}
+
+.time_slot {
+  padding: 10px 0px;
+  width: 100px;
+  text-align: center;
+}
+
+.weekly_content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  border: 1px dotted #c0c0c0;
+}
+
+.daily_content {
+  width: 100%;
+}
+
+.LEC, .TUT, .LAB {
+  background-color: #c0c0c0;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 8px;
+  margin: 2px 0px;
+  width: 100%;
+  height: fit-content;
+  cursor: pointer;
 }
