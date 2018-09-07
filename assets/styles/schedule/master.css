@@ -69,88 +69,108 @@
 
 #weekly_planner {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-#weekly_planner .day_placeholder {
+#weekly_planner .header {
   display: flex;
   flex-direction: row;
-  margin: 10px 0px;
-  border: 1px solid #808080;
+  flex: 1 1 auto;
 }
 
-#weekly_planner .day_placeholder .day_title {
-  width: fit-content;
-  writing-mode: vertical-lr;
-  text-orientation: upright;
-  margin-right: 10px;
+#weekly_planner .header .day_title {
+  padding: 15px;
   text-align: center;
-  border-right: 1px solid #808080;
-}
-
-#weekly_planner .day_placeholder .time_placeholder {
-  display: flex;
-  flex-direction: column;
-  padding-right: 10px;
-  border-right: 1px solid #808080;
-}
-
-#weekly_planner .day_placeholder .time_placeholder p {
-  display: flex;
-  align-items:center;
-  font-size: 14px;
-  height: 25px;
-  margin: 5px 0px;
-}
-
-#weekly_planner .day_placeholder .event_background_lines {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  z-index: 0;
-}
-
-#weekly_planner .day_placeholder .event_placeholder {
-  position: relative;
-  width: 100%;
-}
-
-#weekly_planner .day_placeholder .event_placeholder .event_background_lines span {
-  padding: 5px 0px;
-}
-#weekly_planner .day_placeholder .event_placeholder .event_background_lines span:not(:last-child) {
-  border-bottom: 1px dashed #c0c0c0;
-}
-
-#weekly_planner .day_placeholder .event_placeholder .events_group {
-  position: relative;
-  width: 100%;
-  height:100%;
-}
-
-#weekly_planner .day_placeholder .event_placeholder .events_group .single_event {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  font-size: 14px;
-  width: 45px;
-  box-shadow: 1px 1px 1px #c0c0c0;
-  padding: 5px;
-  font-family: 'Source Sans Pro';
-  font-weight: bold;
+  background-color: #A7414A;
+  border-bottom: 5px solid #6A8A82;
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 1px;
   color: white;
-  cursor: pointer;
+  flex: 1 1 calc(100%/6);
+  text-transform: uppercase;
 }
+
+#weekly_planner .content_placeholder {
+  display: flex;
+  flex-direction: column;
+}
+
+#weekly_planner .content_placeholder .content_group {
+  display: flex;
+  flex-direction: column;
+}
+/*#weekly_planner .content_placeholder .content_group::after {*/
+  /*content: '';*/
+  /*height: 1px;*/
+  /*margin: 3px 0px;*/
+  /*background-image:-webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);*/
+/*}*/
+
+#weekly_planner .content_placeholder .content_group .event_time {
+  width: 100%;
+  font-size: 16px;
+  font-family: Poppins;
+  padding: 5px 10px;
+  font-weight: 600;
+  background-color: #e0e0e0;
+}
+
+/*#weekly_planner .content_placeholder .content_group:nth-of-type(2n-1) {*/
+  /*background-color: #C2D3DA;*/
+/*}*/
+/*#weekly_planner .content_placeholder .content_group:nth-of-type(2n) {*/
+  /*background-color: #F1F3F2;*/
+/*}*/
+
+#weekly_planner .content_placeholder .day_placeholder {
+  display: flex;
+  flex-direction: row;
+  min-height: 50px;
+}
+
+#weekly_planner .content_placeholder .day_placeholder .events_group {
+  position: relative;
+  flex: 1 1 calc(100%/6);
+  border: 1px solid #c0c0c0;
+  padding-bottom: 20px;
+}
+#weekly_planner .content_placeholder .day_placeholder .show_more_btn {
+  position: absolute;
+  bottom: 3px;
+  right: 5px;
+  font-size: 11px;
+  cursor: pointer;
+  color: #46211a;
+}
+
+#weekly_planner .content_placeholder .day_placeholder .show_more_btn:hover {
+  text-decoration: underline;
+}
+
+#weekly_planner .content_placeholder .day_placeholder .events_group .single_event {
+  font-size: 10px;
+  margin: 5px 5px 5px 0px;
+  font-family: Tahoma;
+  color: black;
+  cursor: pointer;
+  padding-left: 5px;
+}
+#weekly_planner .content_placeholder .day_placeholder .events_group .single_event:hover {
+  box-shadow: 1px 1px 1px #c0c0c0;
+}
+
 
 .single_event[data-lessontype='LEC'] {
-  background-color: #118798;
+  border-left: 5px solid #118798;
 }
 .single_event[data-lessontype='TUT'] {
-  background-color: rgb(237, 138, 99);
+  border-left: 5px solid rgb(237, 138, 99);
 }
 .single_event[data-lessontype='LAB'] {
-  background-color: #3a4660;
+  border-left: 5px solid #3a4660;
 }
 
 

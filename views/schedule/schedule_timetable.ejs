@@ -1,53 +1,40 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <link href="/styles/schedule/master.css" rel="stylesheet" />
-<!--<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css' />-->
 
-<!--<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js'></script>-->
-<!--<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script>-->
 <script src="/js/schedule/calendar.js"></script>
 
 <div class="placeholder_main">
   <div class="calendar_header">
-    <!--<div clas="calendar-left-header">-->
-      <!--<div class="calendar-view-wrapper">-->
-        <!--<button id="day-btn" onclick="check_generate_calendar('dayView');" class="btn btn-outline-dark">Day</button>-->
-        <!--<button id="week-btn" onclick="check_generate_calendar('weekView');" class="btn btn-dark">Week</button>-->
-      <!--</div>-->
-      <!--<div class="nav-wrapper">-->
-        <!--<button onclick="prev();" class="btn btn-dark">&#10096;</button>-->
-        <!--<button onclick="next();" class="btn btn-dark">&#10097;</button>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<p class="header-title"></p>-->
     <div class="btns-wrapper">
       <input type="file" id="myfile" formenctype="multipart/form-data" style="display: none;" />
       <button id="import-btn" onclick="choose_file();" class="btn btn-primary">Import File</button>
       <button id="save-btn" onclick="save_changes();" class="btn btn-success">Save Changes</button>
     </div>
   </div>
-  <!--<div id="calendar">-->
 
-  <!--</div>-->
-  <!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-    <!--<div class="modal-dialog" role="document">-->
-      <!--<div class="modal-content">-->
-        <!--<div class="modal-header">-->
-          <!--<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
-          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-            <!--<span aria-hidden="true">&times;</span>-->
-          <!--</button>-->
-        <!--</div>-->
-        <!--<div class="modal-body">-->
-
-        <!--</div>-->
-        <!--<div class="modal-footer">-->
-          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
   <div id="weekly_planner">
+    <div class="header"></div>
+    <div class="content_placeholder">
+    </div>
+  </div>
+
+  <div class="modal fade" id="details_modal" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal_label"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
