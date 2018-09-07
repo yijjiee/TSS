@@ -67,15 +67,7 @@ function load_file() {
         $(currentDiv).attr("ondragstart", "drag(event)");
         $(currentDiv).html(duration + "H/ " + module_code + "<br />" + venue + " - " + group);
 
-        if ($("#weekly_planner > .content_placeholder > .content_group:nth(" + time_index + ") > .day_placeholder > .events_group:nth(" + day_index + ")").children(".single_event").length < 5)
-          $("#weekly_planner > .content_placeholder > .content_group:nth(" + time_index + ") > .day_placeholder > .events_group:nth(" + day_index + ")").append(currentDiv);
-        else {
-          $(currentDiv).css("display", "none");
-          $("#weekly_planner > .content_placeholder > .content_group:nth(" + time_index + ") > .day_placeholder > .events_group:nth(" + day_index + ")").append(currentDiv);
-        }
-
-        if ($("#weekly_planner > .content_placeholder > .content_group:nth(" + time_index + ") > .day_placeholder > .events_group:nth(" + day_index + ")").children(".single_event").length == 5)
-          $("#weekly_planner > .content_placeholder > .content_group:nth(" + time_index + ") > .day_placeholder > .events_group:nth(" + day_index + ") > .show_more_btn").css("display", "block");
+        add_event(currentDiv, time_index, day_index, 1);
       }
     };
   }
@@ -105,15 +97,6 @@ function add_module(ev) {
     $(prev).find(".show_more_btn:visible").css("display", "none");
 }
 
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function drag(ev) {
-  ev.dataTransfer.setData("elementID", ev.target.id);
-  ev.dataTransfer.setData("day_slot", $(ev.target.parentNode).data("day"));
-  ev.dataTransfer.setData("time_slot", $(ev.target.parentNode).parent().data("timeslot"));
-}
 //
 //
 // function save_changes() {
@@ -134,24 +117,5 @@ function show_details(element) {
 $(document).ready(function () {
   $("#myfile").change(load_file);
 
-  let time_slots = ["08:30", "09:30", "10:30", "11:30", "12:30", "13:30", "14:30", "15:30", "16:30", "17:30", "18:30", "19:30", "20:30", "21:30", "22:30", "23:30"];
-  let day_slots = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-
-  for (let i = 0; i < day_slots.length; i++) {
-    $("#weekly_planner > .header").append("<div class='day_title'>" + day_slots[i] + "</div>");
-  }
-  for (let i = 0; i < time_slots.length; i++) {
-    let temp_div = document.createElement("div");
-    $(temp_div).addClass("content_group");
-    $(temp_div).html("<span class='event_time'>" + time_slots[i] + "</span>" +
-      "<div class='day_placeholder' data-timeslot='" + i + "'>" +
-      "<div class='events_group' data-day='1' ondrop='add_module(event);' ondragover='allowDrop(event);'><span onclick='show_details(this)' class='show_more_btn' style='display: none;'>More &#10148;</span></div>" +
-      "<div class='events_group' data-day='2' ondrop='add_module(event);' ondragover='allowDrop(event);'><span onclick='show_details(this)' class='show_more_btn' style='display: none;'>More &#10148;</span></div>" +
-      "<div class='events_group' data-day='3' ondrop='add_module(event);' ondragover='allowDrop(event);'><span onclick='show_details(this)' class='show_more_btn' style='display: none;'>More &#10148;</span></div>" +
-      "<div class='events_group' data-day='4' ondrop='add_module(event);' ondragover='allowDrop(event);'><span onclick='show_details(this)' class='show_more_btn' style='display: none;'>More &#10148;</span></div>" +
-      "<div class='events_group' data-day='5' ondrop='add_module(event);' ondragover='allowDrop(event);'><span onclick='show_details(this)' class='show_more_btn' style='display: none;'>More &#10148;</span></div>" +
-      "</div>");
-
-    $("#weekly_planner > .content_placeholder").append(temp_div);
-  }
+  create_planner($("#weekly_planner"), 0, 5, "08:30", "23:30", 1);
 });

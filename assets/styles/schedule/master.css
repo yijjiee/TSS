@@ -135,7 +135,7 @@
   position: relative;
   flex: 1 1 calc(100%/6);
   border: 1px solid #c0c0c0;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 #weekly_planner .content_placeholder .day_placeholder .show_more_btn {
   position: absolute;
@@ -162,7 +162,6 @@
   box-shadow: 1px 1px 1px #c0c0c0;
 }
 
-
 .single_event[data-lessontype='LEC'] {
   border-left: 5px solid #118798;
 }
@@ -173,4 +172,39 @@
   border-left: 5px solid #3a4660;
 }
 
-
+#weekly_planner .content_placeholder .day_placeholder .events_group .pagination {
+  width: 100%;
+  position: absolute;
+  bottom: 5px;
+  display: flex;
+  justify-content: center;
+}
+#weekly_planner .content_placeholder .day_placeholder .events_group .pagination .page-item {
+  margin: 0px 2px;
+}
+#weekly_planner .content_placeholder .day_placeholder .events_group .pagination .page-item .page-x {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+#weekly_planner .content_placeholder .day_placeholder .events_group .pagination .page-item .page-x::before,#weekly_planner .content_placeholder .day_placeholder .events_group .pagination .page-item .page-x::after {
+  content: '';
+  display:block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #336b87;
+  transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+#weekly_planner .content_placeholder .day_placeholder .events_group .pagination .page-item .page-x::before {
+  background: #336b87;
+  transform: scale(0.5);
+}
+#weekly_planner .content_placeholder .day_placeholder .events_group .pagination .page-item .active::before {
+  transform: scale(0.8);
+}
+#weekly_planner .content_placeholder .day_placeholder .events_group .pagination .page-item .active::after {
+  transform: scale(0.5);
+}
