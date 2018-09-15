@@ -1,37 +1,86 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="/styles/schedule/master.css" rel="stylesheet" />
 
-<script src="/js/schedule/pagination.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="/js/schedule/weekly_planner.js"></script>
 <script src="/js/schedule/calendar.js"></script>
 
 <div class="placeholder_main">
-  <div class="calendar_header">
+  <div class="colorbar">
+    <p class="pagetitle">Weekly Planner</p>
     <div class="btns-wrapper">
+      <button id="all_modules_btn" onclick="display_modules();" class="btn">All Modules</button>
       <input type="file" id="myfile" formenctype="multipart/form-data" style="display: none;" />
-      <button id="import-btn" onclick="choose_file();" class="btn btn-primary">Import File</button>
-      <button id="save-btn" onclick="save_changes();" class="btn btn-success">Save Changes</button>
+      <button id="import-btn" onclick="choose_file();" class="btn btn-dark"><img src="/images/icons/upload_file.svg" /></button>
+      <button id="save-btn" onclick="save_changes();" class="btn btn-danger"><img src="/images/icons/save_to_db.svg" /></button>
+    </div>
+  </div>
+
+  <div class="options_wrapper">
+    <p>
+      Legend:
+      <span style="background-color: #3a4660; color: white; padding: 3px;">LAB</span>
+      <span style="background-color: rgb(237, 138, 99); color: white; padding: 3px;">TUT</span>
+      <span style="background-color: #118798; color: white; padding: 3px;">LEC</span>
+    </p>
+    <div class="filter_wrapper">
+
     </div>
   </div>
 
   <div id="weekly_planner">
-    <!--<div class="header"></div>-->
-    <!--<div class="content_placeholder">-->
-    <!--</div>-->
   </div>
 
-  <div class="modal fade" id="details_modal" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+  <div class="modal fade" id="all_mods_modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modal_label"></h5>
+          <h5 class="modal-title" id="modal_label">All Modules</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-
+          <div class="modal_filter">
+            <ul>
+              <li>Module Code</li>
+              <li>Module Name</li>
+            </ul>
+          </div>
+          <div class="modal_content">
+            <% _.each(modules, function(module, index) {%>
+              <div class="modal_module" id="<%= index %>" data-modulecode="<%= module.code %>" data-name="<%= module.name %>" data-au="<%= module.academic_units %>" data-cohort="<%= module.cohort_size %>" aria-selected="false">
+                <div class="module_info">
+                  <span class="lesson_badge"><%= module.lessons.length %></span>
+                  <p><%= module.code %></p>
+                  <p><%= module.name %></p>
+                  <img src="/images/icons/plus.svg" onclick="add_lesson(this);" />
+                </div>
+                <div class="lesson_info">
+                  <div class="lesson">
+                    <select class="form-control" name="lessontype" onchange="check_lesson_duration(this)">
+                      <option disabled selected>Lesson</option>
+                      <% _.each(module.lessons, function(lesson) {%>
+                      <option data-lessonid="<%= lesson.id %>" data-frequency="<%= lesson.frequency %>" value="<%= lesson.num_of_lessons %>"><%= lesson.lesson_type %></option>
+                      <% }); %>
+                    </select>
+                    <select class="form-control" name="duration">
+                      <option disabled selected>Duration</option>
+                    </select>
+                    <select class="form-control" name="weektype">
+                      <option>EVEN</option>
+                      <option>ODD</option>
+                    </select>
+                    <select class="form-control" name="venue"></select>
+                    <select class="form-control" name="groups"></select>
+                    <img src="/images/icons/plus.svg" onclick="elementTransform(this);" />
+                  </div>
+                </div>
+              </div>
+            <% }); %>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

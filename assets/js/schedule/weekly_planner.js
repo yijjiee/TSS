@@ -1,3 +1,5 @@
+let all_events = [];
+
 /**
  * Author: Wong Yijie
  * create_planner is to generate the weekly calendar view based on the required paramaters.
@@ -87,9 +89,10 @@ function create_planner(weekly_planner, start_day, no_of_days, start_time, end_t
  */
 function add_event(event, time_index, day_index, add_method) {
   let events_group = $("#weekly_planner > .content_placeholder > .content_group:nth(" + time_index + ") > .day_placeholder > .events_group:nth(" + day_index + ")");
-  if (add_method == 1)
+  if (add_method == 1) {
     events_group.append(event);
-  else
+    all_events.push(event);
+  } else
     events_group.prepend(event);
   checkPage(events_group);
 }
@@ -108,8 +111,6 @@ function dragndrop_event(ev) {
   if ($(element).hasClass("single_event") || $(element).hasClass("more_events")) {
     element = ev.target.parentNode;
   }
-  console.log("time: " + time + ", day: " + day);
-  console.log("time: " + $(element).parent().data("timeslot") + ", day: " + $(element).data("day"));
   if ($(element).data("day") != day || $(element).parent().data("timeslot") != time) {
     add_event(document.getElementById(ev.dataTransfer.getData("elementID")), $(element).parent().data("timeslot"), ($(element).data("day")-1), 0);
   }
@@ -143,7 +144,7 @@ function checkPage(event_group) {
   let items_per_page = 5;
   let page_items_array = "";
   let page_control = $(event_group).find(".pagination");
-  let total_pages = Math.floor($(event_group).children(".single_event").length/items_per_page)+1;
+  let total_pages = Math.ceil($(event_group).children(".single_event").length/items_per_page);
   let page = $($(event_group).find(".pagination > .page-item > .page-x")).index($(event_group).find(".pagination > .page-item > .page-x.active"))+1;
 
   $(page_control).find(".page-item").show();

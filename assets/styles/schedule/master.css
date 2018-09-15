@@ -1,76 +1,89 @@
+@-webkit-keyframes slide-in {
+  0% { opacity: 0; -webkit-transform: translateX(100%); }
+  100% { opacity: 1; -webkit-transform: translateX(0); }
+}
+@-moz-keyframes slide-in {
+  0% { opacity: 0; -webkit-transform: translateX(100%); }
+  100% { opacity: 1; -webkit-transform: translateX(0); }
+}
+
+@font-face {
+  font-family: "Avenir-Book";
+  src: url("/fonts/Avenir-Book.otf");
+}
+
 .placeholder_main {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 20px;
   flex: 1;
+  overflow: auto;
+  background-color: #eee;
 }
 
-.fc-today {
-  background: #FFF !important;
-}
-
-.calendar_header {
+.options_wrapper {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  margin: 10px 0px;
+  padding: 10px 20px;
+}
+
+.colorbar {
+  background-color: #118798;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  box-shadow: 0 2px 1px #aaa;
+}
+
+.pagetitle {
+  font-family: Poppins;
+  font-weight: 900;
+  font-size: 24px;
+  color: white;
 }
 
 .btns-wrapper > .btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Poppins';
+  font-weight: 400;
   font-size: 16px;
 }
+
+#import-btn::after {
+  content: 'load stars';
+  margin-left: 5px;
+  text-transform: uppercase;
+  display: none;
+  -webkit-animation: slide-in .3s ease-out;
+}
+#import-btn:hover::after {
+  display: block;
+  visibility: visible;
+}
+#save-btn::after {
+  content: 'save';
+  margin-left: 5px;
+  text-transform: uppercase;
+  display: none;
+  -webkit-animation: slide-in .3s ease-out;
+}
+#save-btn:hover::after {
+  display: block;
+  visibility: visible;
+}
+
 
 .header-title {
   font-size: 32px;
   font-weight: bold;
 }
 
-.calendar-view-wrapper {
-  display: inline;
-}
-
-.nav-wrapper {
-  display: none;
-}
-
-.calendar_table {
-  display: flex;
-  flex-direction: column;
-}
-
-.ct_row {
-  display: flex;
-  flex-direction: row;
-}
-
-.day_slot {
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  width: 300px;
-}
-
-.time_slot {
-  padding: 10px 0px;
-  width: 100px;
-  text-align: center;
-}
-
-.weekly_content {
-  display: flex;
-  flex-wrap: wrap;
-  width: 300px;
-  border: 1px dotted #c0c0c0;
-}
-
-.daily_content {
-  width: 100%;
-}
-
 #weekly_planner {
   width: 100%;
   display: flex;
   flex-direction: column;
+  padding: 0px 20px;
 }
 
 #weekly_planner .header {
@@ -151,12 +164,14 @@
 }
 
 #weekly_planner .content_placeholder .day_placeholder .events_group .single_event {
+  position: relative;
   font-size: 10px;
   margin: 5px 5px 5px 0px;
   font-family: Tahoma;
   color: black;
   cursor: pointer;
   padding-left: 5px;
+  text-transform: uppercase;
 }
 #weekly_planner .content_placeholder .day_placeholder .events_group .single_event:hover {
   box-shadow: 1px 1px 1px #c0c0c0;
@@ -207,4 +222,97 @@
 }
 #weekly_planner .content_placeholder .day_placeholder .events_group .pagination .page-item .active::after {
   transform: scale(0.5);
+}
+
+
+.modal-body .modal_filter ul {
+  list-style-type: none;
+  display: flex;
+  font-family: "Helvetica";
+}
+.modal-body .modal_module {
+  margin: 5px 0px;
+}
+.modal-body .modal_module .module_info {
+  display: grid;
+  grid-template-columns: 30px 80px auto 25px;
+  align-items: center;
+  background-color: #336B87;
+  padding: 10px;
+  font-family: "Avenir-Book";
+  font-weight: 600;
+  color: #f8f8f8;
+}
+.modal-body .modal_module .module_info img {
+  cursor: pointer;
+}
+.lesson_badge {
+  border-radius: 25%;
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.modal-body .modal_module .lesson_info {
+  display: none;
+  flex-direction: column;
+}
+.modal-body .modal_module .lesson_info .lesson {
+  display: flex;
+  align-self: center;
+  flex-wrap: wrap;
+  width: 95%;
+  background-color: #90afc5;
+  padding: 5px 5px;
+  font-family: Tahoma;
+  font-size: 11px;
+}
+.modal-body .modal_module .lesson_info .lesson .form-control {
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 5px;
+  font-family: Tahoma;
+  font-size: 11px;
+  margin: 5px;
+}
+.modal-body .modal_module .lesson_info .lesson .form-control[name='groups'] {
+  padding-right: 20px;
+}
+
+.modal-body .modal_module .lesson_info .lesson .form-control[name='weektype'], .form-control[name='venue'], .form-control[name='groups'] {
+  display: none;
+}
+
+.modal-body .modal_module .lesson_info .single_event {
+  position: relative;
+  font-family: Tahoma;
+  font-size: 10px;
+  border-top: 1px dashed black;
+  border-bottom: 1px dashed black;
+  border-right: 1px dashed black;
+  margin: 3px 0px;
+  cursor: pointer;
+}
+
+.modal-backdrop {
+  display: none;
+}
+.modal-open .modal {
+  width: 400px;
+  position: absolute;
+  left: 20px;
+}
+
+
+.details_popup {
+  position: absolute;
+  background-color: black;
+  color: white;
+  padding: 15px;
 }

@@ -1,4 +1,16 @@
+/** Global Variables **/
+
+let modules = [];
+let event_id = 0;
+
+/** End of Global Variables **/
+
 function choose_file() {
+  if ($(".content_group > .day_placeholder >.events_group").find(".single_event").length != 0) {
+    let resp = confirm("There are unsaved changes, are you sure you want to continue?");
+    if (!resp)
+      return;
+  }
   $("#myfile").click();
 }
 
@@ -12,7 +24,7 @@ function load_file() {
       let lines = event.target.result.split("\r\n");
 
       // $(".header-title").text(lines[0].slice(0, 4) + " S" + lines[0].slice(4, 5));
-      for (let i = 0; i < lines.length; i++) {
+      for (let i = 0; i < lines.length; i++,event_id++) {
         let next; if (i+1 <= lines.length) next = lines[i+1];
         let day = lines[i].slice(19, 21).trim();
         let start_time = lines[i].slice(21,26); //lines[i].slice(21, 23) + "" + lines[i].slice(24, 26);
@@ -24,10 +36,16 @@ function load_file() {
         let lesson_type = lines[i].slice(11, 14).trim();
         let group = lines[i].slice(14, 19).trim();
         let venue = lines[i].slice(31, 51).trim();
-        let lesson_on_week = [];
+        let lesson_week = [];
         for (let j = 51; j < 64; j++) {
-          lesson_on_week.push(lines[i].slice(j, j+1));
+          lesson_week.push(lines[i].slice(j, j+1));
         }
+
+        let lesson_weeks_type = "";
+        if (lesson_week[1] == "N" && lesson_week[3] == "N" && lesson_week[5] == "N" && lesson_week[7] == "N" && lesson_week[9] == "N" && lesson_week[11] == "N")
+          lesson_weeks_type = "ODD";
+        else if (lesson_week[0] == "N" && lesson_week[2] == "N" && lesson_week[4] == "N" && lesson_week[6] == "N" && lesson_week[8] == "N" && lesson_week[10] == "N" && lesson_week[12] == "N")
+          lesson_weeks_type = "EVEN";
 
         let duration = 1;
 
@@ -64,39 +82,17 @@ function load_file() {
         $(currentDiv).attr("data-lessontype", lesson_type);
         $(currentDiv).attr("data-duration", duration);
         $(currentDiv).attr("data-yearmod", module_year);
+        $(currentDiv).attr("data-weektype", lesson_weeks_type);
+        $(currentDiv).attr("data-venue", venue);
+        $(currentDiv).attr("data-group", group);
         $(currentDiv).attr("ondragstart", "drag(event)");
-        $(currentDiv).html(duration + "H/ " + module_code + "<br />" + venue + " - " + group);
+        $(currentDiv).html(duration + "H/" +lesson_weeks_type + " " + module_code + "<br />" + venue + " - " + group);
 
         add_event(currentDiv, time_index, day_index, 1);
       }
     };
   }
 }
-
-function add_module(ev) {
-  ev.preventDefault();
-  let element = ev.target;
-  let day = ev.dataTransfer.getData("day_slot");
-  let time = ev.dataTransfer.getData("time_slot");
-  if ($(element).hasClass("single_event") || $(element).hasClass("more_events")) {
-    element = ev.target.parentNode;
-  }
-  if ($(element).data("day") != day || $(element).parent().data("timeslot") != time) {
-    let id = ev.dataTransfer.getData("elementID");
-    element.prepend(document.getElementById(id));
-    let events = element.getElementsByClassName("single_event");
-    if (events.length > 5) {
-      $(events).siblings(".single_event:visible").last().css("display", "none");
-      $(events).siblings(".show_more_btn:hidden").css("display", "block");
-    }
-  }
-
-  let prev = $(".day_placeholder[data-timeslot='"+ time +"'] > .events_group[data-day='" + day + "']");
-  $(prev).find(".single_event:hidden:nth(0)").css("display", "block");
-  if (prev.children(".single_event").length < 5)
-    $(prev).find(".show_more_btn:visible").css("display", "none");
-}
-
 //
 //
 // function save_changes() {
@@ -117,5 +113,171 @@ function show_details(element) {
 $(document).ready(function () {
   $("#myfile").change(load_file);
 
+  window.onbeforeunload = function(){
+    return "";
+  }
+
   create_planner($("#weekly_planner"), 0, 5, "08:30", "23:30", 1);
+
+  $("#all_mods_modal").draggable({
+    handle: ".modal-header"
+  });
+
+  let modules_length = $("#all_mods_modal > .modal-dialog > .modal-content > .modal-body > .modal_content > .modal_module").length;
+  for (let i = 0; i < modules_length; i++) {
+    let element = $("#all_mods_modal > .modal-dialog > .modal-content > .modal-body > .modal_content > .modal_module:nth(" + i + ")");
+    let module = new Module($(element).data("modulecode"), $(element).data("name"), $(element).data("au"), $(element).data("cohort"));
+    module.lessons = [];
+    for (let j = 1; j < $(element).find(".lesson_info > .lesson > .form-control[name='lessontype'] > option").length; j++) {
+      let lesson = $(element).find(".lesson_info > .lesson > .form-control[name='lessontype'] > option:nth(" + j + ")");
+      module.lessons.push(new Lesson(lesson.data("lessonid"), module.code));
+    }
+    modules.push(module);
+  }
 });
+
+
+function display_modules() {
+  $("#all_mods_modal").modal("show");
+}
+
+
+function add_lesson(target) {
+  let element = $(target).parent().siblings(".lesson_info");
+  if ($(element).css("display") == "none") {
+    $(element).css("display", "flex");
+    $(target).attr("src", "/images/icons/minus.svg");
+  } else {
+    $(element).hide();
+    $(target).attr("src", "/images/icons/plus.svg");
+  }
+
+  let mainElement = $(target).parent().parent();
+  if (modules[$(mainElement).attr("id")].lessons.possible_venues == null) {
+    $.ajax({
+      url: "/lesson/show",
+      method: "POST",
+      data: {module_code: $(mainElement).data("modulecode")},
+      success: function (res) {
+        let lessons = res[1];
+        for (let i = 0; i < lessons.length; i++) {
+          let lesson = modules[$(mainElement).attr("id")].lessons.find(function(element) { return element.id == lessons[i].id ? element : null; });
+          lesson.possible_venues = [], lesson.groups_assigned = [];
+          for (let j = 0; j < lessons[i].possible_venues.length; j++) {
+            let venue = lessons[i].possible_venues[j];
+            lesson.possible_venues.push(new Venue(venue.id, venue.name, venue.venue_type, venue.capacity));
+          }
+          for (let j = 0; j < lessons[i].groups_assigned.length; j++) {
+            let group = lessons[i].groups_assigned[j];
+            lesson.groups_assigned.push(new Group(group.group_index, group.group_size));
+          }
+        }
+      }
+    });
+  }
+}
+
+function check_lesson_duration(target) {
+  $(target).siblings("select[name='duration']").empty();
+  $(target).siblings("select[name='venue']").empty();
+  for (let i = 0; i < target.value; i++) {
+    $(target).siblings("select[name='duration']").append($("<option>", {value: (i+1), text: (i+1)}));
+  }
+
+  if ($(target).find(":selected").data("frequency") == "Alternate")
+    $(target).siblings("select[name='weektype']").show();
+  else
+    $(target).siblings("select[name='weektype']").hide();
+
+  let module = $(target).parent().parent().parent();
+  let possible_venues = modules[$(module).attr("id")].lessons.find(function(element) { return element.id == $(target).find(":selected").data("lessonid") ? element : null; }).possible_venues;
+  let groups_assigned = modules[$(module).attr("id")].lessons.find(function(element) { return element.id == $(target).find(":selected").data("lessonid") ? element : null; }).groups_assigned;
+  for (let i = 0; i < possible_venues.length; i++) {
+    $(target).siblings("select[name='venue']").append($("<option>", {value: possible_venues[i].id, text: possible_venues[i].name}));
+  }
+  for (let i = 0; i < groups_assigned.length; i++) {
+    $(target).siblings("select[name='groups']").append($("<option>", {value: groups_assigned[i].group_index, text: groups_assigned[i].group_index}));
+  }
+  $(target).siblings("select[name='venue']").show();
+  $(target).siblings("select[name='groups']").show();
+}
+
+function elementTransform(target) {
+  let form_controls = $(target).siblings(".form-control");
+
+  let module_code = $(target).parent().parent().parent().data("modulecode");
+  let lesson_type = $(form_controls[0]).find(":selected").text();
+  let duration = $(form_controls[1]).find(":selected").text();
+  let lesson_weeks_type = "";
+  if ($(form_controls[2]).css("display") == "block")
+    lesson_weeks_type = $(form_controls[2]).find(":selected").text();
+  let venue = $(form_controls[3]).find(":selected").text();
+  let group = $(form_controls[4]).find(":selected").text();
+
+  let currentDiv = document.createElement("div");
+  $(currentDiv).attr("draggable", true);
+  $(currentDiv).attr("id", "event_" + event_id);
+  $(currentDiv).addClass("single_event");
+  $(currentDiv).attr("data-lessontype", lesson_type);
+  $(currentDiv).attr("data-duration", duration);
+  $(currentDiv).attr("data-yearmod", module_code.slice(2,3));
+  $(currentDiv).attr("data-weektype", lesson_weeks_type);
+  $(currentDiv).attr("data-venue", venue);
+  $(currentDiv).attr("data-group", group);
+  $(currentDiv).attr("onclick", "view_details(this)");
+  $(currentDiv).attr("ondragstart", "drag(event)");
+  $(currentDiv).html("<p>" + duration + "H/" +lesson_weeks_type + " " + module_code + "</p><p>" + venue + " - " + group + "</p>" +
+    "<img src='/images/icons/cross.svg' onclick='removeElement(this);' style='position: absolute; right: 5px; top: 5px;' />");
+
+  event_id++;
+  $(target).parent().parent().append(currentDiv);
+}
+
+function removeElement(target) {
+  let grandparent;
+  if ($(target).parent().parent().hasClass("events_group"))
+    grandparent = $(target).parent().parent();
+  $(target).parent().remove();
+  if (grandparent != null)
+    checkPage(grandparent);
+}
+
+function view_details(target) {
+  let popup = document.createElement("div");
+  $(popup).addClass("details_popup");
+  $(popup).css("top", "30px");
+  $(popup).html("Just testing");
+  $(target).parent().append(popup);
+}
+
+class Module {
+  constructor(code, name, au, size) {
+    this.code = code;
+    this.name = name;
+    this.au = au;
+    this.size = size;
+  }
+}
+
+class Lesson {
+  constructor(id, module_code) {
+    this.id = id;
+    this.module_code = module_code;
+  }
+}
+
+class Venue {
+  constructor(id, name, venue_type, capacity) {
+    this.id = id;
+    this.name = name;
+    this.venue_type = venue_type;
+    this.capacity = capacity;
+  }
+}
+
+class Group {
+  constructor(group_index, group_size) {
+    this.group_index = group_index;
+    this.group_size = group_size;
+  }
+}

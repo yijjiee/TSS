@@ -226,5 +226,14 @@ let self = module.exports = {
 
     return "OK";
   },
+
+
+  /* Function below only for Weekly Planner */
+  'planner': async function(req, res) {
+    let modules = await Module.find({}).populate("lessons");
+    res.view('schedule/schedule_timetable', {
+      modules: modules,
+    });
+  },
 };
 

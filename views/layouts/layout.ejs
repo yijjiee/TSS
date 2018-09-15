@@ -9,6 +9,7 @@
     <!-- External Stylesheets (Fonts) -->
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 
     <!-- Java Scripts to be included in the header -->
     <script src="/js/jquery-3.3.1.min.js"></script>
@@ -42,43 +43,52 @@
   <body>
     <div id="headwrapper">
       <div id="headtitle">
-        <img src="/images/ntulogo.svg" />
-        <div style="margin-left: 10pt;">
-          <p>Timetable Planning</p>
-          <p>Scheduling System</p>
-        </div>
+        <p>Timetable Planning</p>
+        <p>Scheduling System</p>
       </div>
-      <table id="navmenu">
-        <tr>
-          <td id="navhome" onclick="redirect('/')">Home</td>
-          <td id="navstaff" onclick="redirect('/staffs/main')">Staff</td>
-          <td>
-            <span id="navmod" onclick="redirect('/module')">Module</span>
-            <div class="dropdown-content">
-              <p onclick="redirect('/module')">View/Edit</p>
-              <p onclick="redirect('/module/addnew')">Add New</p>
-            </div>
-          </td>
-          <td id="navschedule" onclick="redirect('/schedule')">Schedule</td>
-          <td>
-            <span id="navimport" onclick="redirect('/import')">Import</span>
-            <div class="dropdown-content-right">
-              <p onclick="redirect('/import/STARS')">STARS</p>
-              <p onclick="redirect('/import/module')">Modules</p>
-              <p onclick="redirect('/import/staff')">Staffs</p>
-              <p onclick="redirect('/import/group')">Groups</p>
-            </div></td>
-          <td>
-            <span id="navexport" onclick="redirect('/export')">Export</span>
-            <div class="dropdown-content-right">
-              <p onclick="redirect('/export/STARS')">STARS</p>
-              <p onclick="redirect('/export/module')">Modules</p>
-              <p onclick="redirect('/export/staff')">Staffs</p>
-              <p onclick="redirect('/export/group')">Groups</p>
-            </div></td>
-        </tr>
-      </table>
-      <img id="navicon" src="/images/icons/menu.svg" />
+      <div class="profile">
+        <img class="profile_img" src="/images/32.JPG" />
+      </div>
+      <ul class="nav_menu">
+        <li id="navhome" onclick="redirect('/')"><img src="/images/icons/home.svg" />&emsp;<span>Home</span></li>
+        <li id="navstaff" onclick="redirect('/staffs/main')"><img src="/images/icons/staff.svg" />&emsp;<span>Staff</span></li>
+        <li id="navmod" role="button" data-toggle="collapse" onclick="toggle_collapse(this);" data-menu="module" data-target="#module_submenu"><img src="/images/icons/module.svg" />&emsp;<span>Module</span></li>
+          <div class="collapse submenu" id="module_submenu">
+            <p onclick="redirect('/module')" data-submenu="">View Existing</p>
+            <p onclick="redirect('/module/addnew')" data-submenu="addnew">Add New</p>
+          </div>
+        <li id="navschedule" onclick="redirect('/schedule')"><img src="/images/icons/planner.svg" />&emsp;<span>Planner</span></li>
+      </ul>
+      <!--<table id="navmenu">-->
+        <!--<tr>-->
+          <!--<td id="navhome" onclick="redirect('/')">Home</td>-->
+          <!--<td id="navstaff" onclick="redirect('/staffs/main')">Staff</td>-->
+          <!--<td>-->
+            <!--<span id="navmod" onclick="redirect('/module')">Module</span>-->
+            <!--<div class="dropdown-content">-->
+              <!--<p onclick="redirect('/module')">View/Edit</p>-->
+              <!--<p onclick="redirect('/module/addnew')">Add New</p>-->
+            <!--</div>-->
+          <!--</td>-->
+          <!--<td id="navschedule" onclick="redirect('/schedule')">Schedule</td>-->
+          <!--<td>-->
+            <!--<span id="navimport" onclick="redirect('/import')">Import</span>-->
+            <!--<div class="dropdown-content-right">-->
+              <!--<p onclick="redirect('/import/STARS')">STARS</p>-->
+              <!--<p onclick="redirect('/import/module')">Modules</p>-->
+              <!--<p onclick="redirect('/import/staff')">Staffs</p>-->
+              <!--<p onclick="redirect('/import/group')">Groups</p>-->
+            <!--</div></td>-->
+          <!--<td>-->
+            <!--<span id="navexport" onclick="redirect('/export')">Export</span>-->
+            <!--<div class="dropdown-content-right">-->
+              <!--<p onclick="redirect('/export/STARS')">STARS</p>-->
+              <!--<p onclick="redirect('/export/module')">Modules</p>-->
+              <!--<p onclick="redirect('/export/staff')">Staffs</p>-->
+              <!--<p onclick="redirect('/export/group')">Groups</p>-->
+            <!--</div></td>-->
+        <!--</tr>-->
+      <!--</table>-->
     </div>
     <%- body %>
 

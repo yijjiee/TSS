@@ -78,7 +78,8 @@ module.exports.routes = {
    * Schedule related route
    **/
   '/schedule': {
-    view: 'schedule/schedule_timetable',
+    controller: 'module',
+    action: 'planner',
   },
 
   /***************************************************************************

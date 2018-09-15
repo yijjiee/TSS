@@ -1,7 +1,3 @@
-.placeholder_main {
-  flex-direction: column;
-}
-
 #lec_details, #tut_details, #lab_details {
   display: none;
 }

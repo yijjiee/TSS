@@ -37,8 +37,13 @@
 
 .placeholder_main {
   display: flex;
-  padding: 10px 20px;
+  flex-direction: column;
   flex: 1;
+  overflow: auto;
+}
+
+.content_wrapper {
+  display: flex;
 }
 
 
