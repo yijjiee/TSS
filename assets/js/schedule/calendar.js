@@ -227,7 +227,7 @@ function elementTransform(target) {
   $(currentDiv).attr("onclick", "view_details(this)");
   $(currentDiv).attr("ondragstart", "drag(event)");
   $(currentDiv).html("<p>" + duration + "H/" +lesson_weeks_type + " " + module_code + "</p><p>" + venue + " - " + group + "</p>" +
-    "<img src='/images/icons/cross.svg' onclick='removeElement(this);' style='position: absolute; right: 5px; top: 5px;' />");
+    "<img src='/images/icons/cross.svg' onclick='removeElement(this)' style='position: absolute; right: 5px; top: 5px;' />");
 
   event_id++;
   $(target).parent().parent().append(currentDiv);
@@ -243,11 +243,10 @@ function removeElement(target) {
 }
 
 function view_details(target) {
-  let popup = document.createElement("div");
-  $(popup).addClass("details_popup");
-  $(popup).css("top", "30px");
-  $(popup).html("Just testing");
-  $(target).parent().append(popup);
+  if ($(target).parent().length > 0) {
+    $("#details_popup > .popup > .content").html();
+    window.location.href = "#details_popup";
+  }
 }
 
 class Module {
