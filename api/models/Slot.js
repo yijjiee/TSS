@@ -17,16 +17,10 @@ module.exports = {
       unique: true,
     },
     start_time: {
-      type: 'ref',
-      columnType: 'datetime',
+      type: 'string',
       required: true,
     },
     end_time: {
-      type: 'ref',
-      columnType: 'datetime',
-      required: true,
-    },
-    day_of_week: {
       type: 'string',
       required: true,
     },

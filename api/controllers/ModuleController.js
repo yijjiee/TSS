@@ -102,67 +102,81 @@ let self = module.exports = {
             workbook.xlsx.readFile(filePath)
               .then(async function() {
                 let worksheet = workbook.getWorksheet(1);
-                for (let row_index = 1; row_index <= worksheet.rowCount; row_index++) {
+                for (let row_index = 2; row_index <= worksheet.rowCount; row_index++) {
                   let row = worksheet.getRow(row_index);
-                  let module;
+                  let module, sharedModule;
                   try {
-                    module = await Module.create({
-                      code: row.getCell(1).value,
-                      name: row.getCell(2).value,
-                      academic_units: row.getCell(3).value,
-                      cohort_size: row.getCell(4).value,
-                    }).fetch();
+                      module = await Module.findOrCreate({ code: row.getCell(1).value }, {
+                        code: row.getCell(1).value,
+                        name: row.getCell(2).value,
+                        academic_units: row.getCell(3).value,
+                        cohort_size: row.getCell(4).value,
+                      });
+                      if (row.getCell(5).value == true) {
+                        let tempCode = "CE";
+                        if (row.getCell(1).value.toString().slice(0, 2) == "CE")
+                          tempCode = "CZ";
+                        sharedModule = await Module.findOrCreate({ code: tempCode + row.getCell(1).value.toString().slice(2) }, {
+                          code: tempCode + row.getCell(1).value.toString().slice(2),
+                          name: row.getCell(2).value,
+                          academic_units: row.getCell(3).value,
+                          cohort_size: row.getCell(4).value,
+                        });
+                      }
                   } catch(err) {
                     res.serverError(err);
                     break;
                   }
 
-                  if (module != null) {
-                    if (row.getCell(5).value > 0) {
-                      let lesson = await Lesson.create({
-                        lesson_type: "LEC",
-                        num_of_lessons: row.getCell(5).value,
-                        frequency: row.getCell(7).value,
-                        module_code: module.code,
-                      }).fetch();
-
-                      if (lesson) {
-                        let result = await self.createLessons(row, lesson, 6, 8);
-                        if (result != "OK")
-                          res.serverError(result);
-                      }
-                    }
-
-                    if (row.getCell(9).value > 0) {
-                      let lesson = await Lesson.create({
-                        lesson_type: "TUT",
-                        num_of_lessons: row.getCell(9).value,
-                        frequency: row.getCell(11).value,
-                        module_code: module.code,
-                      }).fetch();
-
-                      if (lesson) {
-                        let result = await self.createLessons(row, lesson, 10, 12);
-                        if (result != "OK")
-                          res.serverError(result);
-                      }
-                    }
-
-                    if (row.getCell(13).value > 0) {
-                      let lesson = await Lesson.create({
-                        lesson_type: "LAB",
-                        num_of_lessons: row.getCell(13).value,
-                        frequency: row.getCell(15).value,
-                        module_code: module.code,
-                      }).fetch();
-
-                      if (lesson) {
-                        let result = await self.createLessons(row, lesson, 14, 16);
-                        if (result != "OK")
-                          res.serverError(result);
-                      }
-                    }
-                  }
+                  /**
+                   * Leaving bottom for further enhancement (The excel file to be able to build the behind columns with lecture / tutorial / lab / additional lesson details)
+                   */
+                  // if (module != null) {
+                  //   if (row.getCell(6).value > 0) {
+                  //     let lesson = await Lesson.create({
+                  //       lesson_type: "LEC",
+                  //       num_of_lessons: row.getCell(6).value,
+                  //       frequency: row.getCell(8).value,
+                  //       module_code: module.code,
+                  //     }).fetch();
+                  //
+                  //     if (lesson) {
+                  //       let result = await self.createLessons(row, lesson, 6, 8);
+                  //       if (result != "OK")
+                  //         res.serverError(result);
+                  //     }
+                  //   }
+                  //
+                  //   if (row.getCell(10).value > 0) {
+                  //     let lesson = await Lesson.create({
+                  //       lesson_type: "TUT",
+                  //       num_of_lessons: row.getCell(10).value,
+                  //       frequency: row.getCell(12).value,
+                  //       module_code: module.code,
+                  //     }).fetch();
+                  //
+                  //     if (lesson) {
+                  //       let result = await self.createLessons(row, lesson, 10, 12);
+                  //       if (result != "OK")
+                  //         res.serverError(result);
+                  //     }
+                  //   }
+                  //
+                  //   if (row.getCell(14).value > 0) {
+                  //     let lesson = await Lesson.create({
+                  //       lesson_type: "LAB",
+                  //       num_of_lessons: row.getCell(14).value,
+                  //       frequency: row.getCell(16).value,
+                  //       module_code: module.code,
+                  //     }).fetch();
+                  //
+                  //     if (lesson) {
+                  //       let result = await self.createLessons(row, lesson, 15, 17);
+                  //       if (result != "OK")
+                  //         res.serverError(result);
+                  //     }
+                  //   }
+                  // }
                 }
                 // worksheet.eachRow({includeEmpty: true}, function(row, rowNumber) {
                 //   let currRow = worksheet.getRow(rowNumber);

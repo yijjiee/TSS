@@ -86,7 +86,8 @@ function load_file() {
         $(currentDiv).attr("data-venue", venue);
         $(currentDiv).attr("data-group", group);
         $(currentDiv).attr("ondragstart", "drag(event)");
-        $(currentDiv).html(duration + "H/" +lesson_weeks_type + " " + module_code + "<br />" + venue + " - " + group);
+        $(currentDiv).html("<p>" + duration + "H/" +lesson_weeks_type + " " + module_code + "</p><p>" + venue + " - " + group + "</p>" +
+          "<img src='/images/icons/cross.svg' onclick='removeElement(this)' style='position: absolute; right: 5px; top: 5px;' />");
 
         add_event(currentDiv, time_index, day_index, 1);
       }
@@ -244,9 +245,46 @@ function removeElement(target) {
 
 function view_details(target) {
   if ($(target).parent().length > 0) {
-    $("#details_popup > .popup > .content").html();
+    let lesson_on_week = $(target).data("lessonweeks") != null ? $(target).data("lessonweeks").split(",") : null;
+    $("#details_popup > .popup").data("eventID", $(target).attr("id"));
+
+    if (lesson_on_week == null) {
+      $("#details_popup > .popup > .content > .lessonweeks").empty();
+      for (let i = 0; i < 13; i++) {
+        let checkbox = document.createElement("input");
+        let label = document.createElement("label");
+        $(checkbox).attr("type", "checkbox");
+        $(checkbox).attr("id", "box-" + (i+1));
+        $(label).attr("for", "box-" + (i+1));
+        $(label).html("Week " + (i+1));
+        $("#details_popup > .popup > .content > .lessonweeks").append([checkbox, label]);
+      }
+    } else {
+      for (let i = 0; i < 13; i++) {
+        $("#box-" + (i+1)).prop("checked", false);
+      }
+      for (let i = 0; i < lesson_on_week.length; i++) {
+          $("#box-" + lesson_on_week[i]).prop("checked", true);
+      }
+    }
+      $("#details_popup > .popup > .content").html();
     window.location.href = "#details_popup";
   }
+}
+
+function add_lesson_weeks(target) {
+  let eventID = $(target).data("eventID");
+  let checkboxes = $(target).find(".lessonweeks").find("input[type='checkbox']:checked");
+  let str = "";
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (i != 0)
+      str += ",";
+    str += $(checkboxes[i]).attr("id").slice(4)
+  }
+  if (str != "")
+    $("#" + eventID).data("lessonweeks", str);
+
+  window.location.href = "#";
 }
 
 class Module {

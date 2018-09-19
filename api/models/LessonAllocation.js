@@ -20,6 +20,10 @@ module.exports = {
       type: 'string',
       required: true,
     },
+    lesson_day: {
+      type: 'string',
+      required: true,
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -32,7 +36,7 @@ module.exports = {
     group_index: {
       model: 'Group',
     },
-    venue_name: {
+    venue_id: {
       model: 'Venue',
     },
     slot_id: {

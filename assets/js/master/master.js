@@ -15,10 +15,6 @@ $(document).ready(function() {
       $("#module_submenu > p[data-submenu='" + xpath[2] + "']").css("background-color", "rgba(255,255,255,0.4)");
   } else if (xpath[1] == "schedule")
     $("#navschedule").css("backgroundColor", "#ed8a63");
-  else if (xpath[1] == "import")
-    $("#navimport").css("backgroundColor", "#ed8a63");
-  else if (xpath[1] == 'export')
-    $("#navexport").css("backgroundColor", "#ed8a63");
 });
 
 function redirect(url) {

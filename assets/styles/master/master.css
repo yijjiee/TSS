@@ -27,7 +27,7 @@ p {
 #headwrapper {
   display: flex;
   flex-direction: column;
-  background-color: #3a4660;
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
   align-items: center;
   width: 250px;
   transition: width 1s ease 0s;
@@ -38,14 +38,13 @@ p {
   justify-content: center;
   align-items: flex-end;
   font-family: 'Uni Sans Thin';
-  font-size: 18px;
+  font-size: 28px;
+  text-align: right;
   font-weight: 600;
   text-shadow: 1px 1px 1px #555;
   color: white;
-  background-color: #68829E;
   width: 100%;
   padding: 10px 20px;
-  box-shadow: 0 2px 1px #555;
   min-height: 100px;
 }
 

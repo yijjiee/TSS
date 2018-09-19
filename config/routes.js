@@ -43,7 +43,7 @@ module.exports.routes = {
     controller: 'module',
     action: 'create',
   },
-  '/import/module': {
+  '/module/import': {
     controller: 'module',
     action: 'import',
   },
@@ -58,6 +58,10 @@ module.exports.routes = {
   'POST /lesson/show': {
     controller: 'lesson',
     action: 'show',
+  },
+  'POST /lesson/uploadFile': {
+    controller: 'lesson',
+    action: 'uploadFile',
   },
 
 

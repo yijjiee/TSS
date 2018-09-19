@@ -7,51 +7,33 @@
 <div class="placeholder_main">
   <div id="colorbar">
     <p id="pagetitle">Modules Management</p>
-    <p id="pagesubtitle">View and edit the details of a Module here.</p>
-    <p id="pagesmalltitle">Want to add new modules? Click <a href="/module/addnew">here</a>.</p>
+    <div class="btns-wrapper">
+      <form action="/module/uploadFile" enctype="multipart/form-data" method="POST">
+        <input type="file" id="module_file" name="moduleFile" onchange="submit_file($(this).siblings('input[type=submit]'))" formenctype="multipart/form-data" accept=".xlsx" style="display: none;" />
+        <input type="submit" id="module_submit_btn" style="display: none;" />
+      </form>
+      <button id="import-mod-btn" onclick="select_file($(this).siblings('form').find('input[id=module_file]'));" class="btn btn-dark"><img src="/images/icons/upload_file.svg" /></button>
+
+      <form action="/lesson/uploadFile" enctype="multipart/form-data" method="POST">
+        <input type="file" id="lesson_file" name="lessonFile" onchange="submit_file($(this).siblings('input[type=submit]'));" formenctype="multipart/form-data" accept=".txt" style="display: none;" />
+        <input type="submit" id="lesson_submit_btn" style="display: none;" />
+      </form>
+      <button id="import-lesson-btn" onclick="select_file($(this).siblings('form').find('input[id=lesson_file]'));" class="btn btn-secondary"><img src="/images/icons/import.svg" /></button>
+    </div>
   </div>
   <div class="content_wrapper">
-    <div class="modules_list_wrapper">
-      <p id="listtitle">Modules List</p>
-      <div class="modules_list">
-        <% _.each(modules, function(module) {%>
-        <p onclick="selectModule(this);" id="<%= module.code %>" aria-selected="false"><%= module.code %> - <%= module.name %></p>
-        <% }); %>
-      </div>
+    <div class="modules_list">
+      <% _.each(modules, function(module, index) {%>
+      <p onclick="selectModule(this);" selected id="<%= module.code %>" aria-selected="false"><%= module.code %> - <%= module.name %></p>
+      <% }); %>
     </div>
 
     <div class="module_details_wrapper">
       <p id="module_title"></p>
       <div class="module_main_details_editable">
-        <p>Module year:</p><input type="text" disabled id="moduleyear" value="1" />
-        <p>Academic units:</p><input type="text" disabled id="moduleau" value="3" />
-        <p>Cohort size:</p><input type="text" disabled id="modulecohort" value="250" />
+        <ul class="module_info"></ul>
       </div>
       <div class="class_details">
-        <div class="class_wrapper" id="lec_wrapper">
-          <h3 style="grid-column-start: 1; grid-column-end: 3;">Lecture Related</h3>
-          <p>Frequency:</p><input type="text" disabled id="lecfreq" value="Weekly" />
-          <p style="grid-column-start: 1; grid-column-end: 3;">Possible Venues:</p>
-          <textarea id="lec_pvenues_textarea" style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
-          <p style="grid-column-start: 1; grid-column-end: 3;">Groups Assigned:</p>
-          <textarea style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
-        </div>
-        <div class="class_wrapper" id="tut_wrapper">
-          <h3 style="grid-column-start: 1; grid-column-end: 3;">Tutorial Related</h3>
-          <p>Frequency:</p><input type="text" disabled id="tutfreq" value="Weekly" />
-          <p style="grid-column-start: 1; grid-column-end: 3;">Possible Venues:</p>
-          <textarea id="tut_pvenues_textarea" style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
-          <p style="grid-column-start: 1; grid-column-end: 3;">Groups Assigned:</p>
-          <textarea style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
-        </div>
-        <div class="class_wrapper" id="lab_wrapper">
-          <h3 style="grid-column-start: 1; grid-column-end: 3;">Lab Related</h3>
-          <p>Frequency:</p><input type="text" disabled id="labfreq" value="Fortnightly" />
-          <p style="grid-column-start: 1; grid-column-end: 3;">Possible Venues:</p>
-          <textarea id="lab_pvenues_textarea" style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
-          <p style="grid-column-start: 1; grid-column-end: 3;">Groups Assigned:</p>
-          <textarea style="grid-column-start: 1; grid-column-end: 3;" disabled></textarea>
-        </div>
       </div>
     </div>
   </div>

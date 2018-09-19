@@ -3,13 +3,12 @@
 <link href="/styles/modules/modulesmaster.css" type="text/css" rel="stylesheet" />
 <link href="/styles/modules/modulesaddnew.css" type="text/css" rel="stylesheet" />
 
-<div id="colorbar">
-  <p id="pagetitle">Import from Excel file</p>
-  <p id="pagesubtitle">Adding modules and details through excel sheet.</p>
-  <p id="pagesmalltitle">View existing modules? Click <a href="/module">here</a>.<br />Add new module without importing? Click <a href="/module/addnew">here</a>.</p>
-</div>
-
 <div class="placeholder_main">
+  <div id="colorbar">
+    <p id="pagetitle">Import from Excel file</p>
+    <p id="pagesubtitle">Adding modules and details through excel sheet.</p>
+    <p id="pagesmalltitle">View existing modules? Click <a href="/module">here</a>.<br />Add new module without importing? Click <a href="/module/addnew">here</a>.</p>
+  </div>
   <form action="/module/uploadFile" enctype="multipart/form-data" method="POST">
     <input type="file" name="moduleFile"  />
 

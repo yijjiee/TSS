@@ -1,38 +1,44 @@
+@-webkit-keyframes slide-in {
+  0% { opacity: 0; -webkit-transform: translateX(100%); }
+  100% { opacity: 1; -webkit-transform: translateX(0); }
+}
+@-moz-keyframes slide-in {
+  0% { opacity: 0; -webkit-transform: translateX(100%); }
+  100% { opacity: 1; -webkit-transform: translateX(0); }
+}
+
+@font-face {
+  font-family: "AdelleSansReg";
+  src: url("/fonts/AdelleSans-Regular.ttf");
+}
+
 #colorbar {
-  background-color: #118798;
-  padding: 25px 0px 15px;
+  background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+  flex-shrink: 0;
 }
 
 #pagetitle {
   font-family: Poppins;
   font-weight: 900;
-  font-size: 24pt;
+  font-size: 24px;
   color: white;
-  padding-left: 20px;
 }
 
-#pagesubtitle {
-  font-family: Poppins;
-  font-weight: 300;
-  font-size: 12pt;
-  color: #c0c0c0;
-  padding-left: 20px;
+.btns-wrapper {
+  display: flex;
 }
 
-#pagesmalltitle {
-  font-family: Poppins;
+.btns-wrapper > .btn {
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins';
   font-weight: 400;
-  font-size: 11pt;
-  color: #606060;
-  padding-left: 20px;
-}
-
-#pagesmalltitle a {
-  color: white;
-}
-
-#pagesmalltitle a:hover {
-  color: #c0c0c0;
+  font-size: 15px;
+  margin: 0px 2px;
 }
 
 .placeholder_main {
@@ -40,6 +46,7 @@
   flex-direction: column;
   flex: 1;
   overflow: auto;
+  background-image: url("/images/bgpattern.png");
 }
 
 .content_wrapper {
@@ -59,45 +66,15 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
-  #pagetitle {
-    font-size: 20pt;
-  }
 
-  #pagesubtitle {
-    font-size: 10pt;
-  }
-
-  #pagesmalltitle {
-    font-size: 9pt;
-  }
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
-  #pagetitle {
-    font-size: 18pt;
-  }
 
-  #pagesubtitle {
-    font-size: 9pt;
-  }
-
-  #pagesmalltitle {
-    font-size: 8pt;
-  }
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 320px) {
-  #pagetitle {
-    font-size: 16pt;
-  }
 
-  #pagesubtitle {
-    font-size: 8pt;
-  }
-
-  #pagesmalltitle {
-    font-size: 7pt;
-  }
 }

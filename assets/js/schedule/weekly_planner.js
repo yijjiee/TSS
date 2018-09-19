@@ -104,12 +104,17 @@ function add_event(event, time_index, day_index, add_method) {
 function dragndrop_event(ev) {
   ev.preventDefault();
 
+  console.log(ev.target);
+
   let element = ev.target;
   let day = ev.dataTransfer.getData("day_slot");
   let time = ev.dataTransfer.getData("time_slot");
   let prev_event_group = $("#weekly_planner > .content_placeholder > .content_group:nth(" + time + ") > .day_placeholder > .events_group:nth(" + (day-1) + ")");
   if ($(element).hasClass("single_event") || $(element).hasClass("more_events")) {
     element = ev.target.parentNode;
+  }
+  else if ($(element).parent().parent().hasClass("events_group")) {
+    element = ev.target.parentNode.parentNode;
   }
   if ($(element).data("day") != day || $(element).parent().data("timeslot") != time) {
     add_event(document.getElementById(ev.dataTransfer.getData("elementID")), $(element).parent().data("timeslot"), ($(element).data("day")-1), 0);

@@ -1,28 +1,59 @@
-.modules_list_wrapper {
-  font-family: "Roboto";
-  display: flex;
-  flex-direction: column;
-  width: 22vw;
+#import-mod-btn::after {
+  content: 'From Excel';
+  margin-left: 5px;
+  text-transform: uppercase;
+  display: none;
+  -webkit-animation: slide-in .3s ease-out;
+}
+#import-lesson-btn::after {
+  content: 'Lesson Details';
+  margin-left: 5px;
+  text-transform: uppercase;
+  display: none;
+  -webkit-animation: slide-in .3s ease-out;
+}
+#import-mod-btn:hover::after, #import-lesson-btn:hover::after {
+  display: inline;
+  visibility: visible;
 }
 
 .modules_list {
   display: flex;
   flex-direction: column;
-  flex: 1;
   overflow: auto;
+  min-width: 350px;
+  margin: 10px 0px 10px 10px;
+  padding: 5px 0px 5px 10px;
+  font-family: "Roboto";
 }
-
-#listtitle {
-  font-size: 2.5vmin;
-  font-weight: bold;
-  padding-top: 10px;
+.modules_list:hover::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #F5F5F5;
+}
+.modules_list:hover::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
+.modules_list::-webkit-scrollbar {
+  width: 8px;
+  background-color: #F5F5F5;
+}
+.modules_list::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.2);
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+.modules_list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.2);
+  background-color: rgba(200,200,200,0.1);
 }
 
 .modules_list p {
   padding: 10px 0px;
   cursor: pointer;
   font-weight: 500;
-  font-size: 1.5vmin;
+  font-size: 14px;
 }
 
 .module_details_wrapper {
@@ -31,44 +62,30 @@
   flex: 1;
   font-family: "Roboto";
   font-weight: 500;
-  font-size: 1.5vmin;
-  padding-left: 30px;
-}
-
-.module_details_wrapper input[type=text] {
-  border: none;
-  text-align: center;
-  height: fit-content;
-  width: 100%;
-  align-self: center;
-  padding: 5px 0px;
-  justify-self: center;
-  font-size: 1.5vmin;
+  margin-left: 30px;
 }
 
 #module_title {
-  padding-top: 10px;
-  font-size: 2.5vmin;
+  margin-top: 10px;
+  font-size: 24px;
   font-weight: bold;
-}
-
-.module_details_wrapper input[type=text]:focus {
-  outline: none;
-  border-bottom: 1px solid crimson;
-}
-
-.module_details_wrapper input[type=text]:disabled {
-  background-color: transparent;
 }
 
 .module_main_details_editable {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   flex-wrap: wrap;
+  font-family: "AdelleSansReg";
 }
 
-.module_main_details_editable input[type=text] {
-  width: 50px;
+.module_main_details_editable .module_info {
+  font-size: 15px;
+  list-style-type: none;
+  margin-top: 10px;
+}
+.module_main_details_editable .module_info li {
+  display: inline;
+  padding: 10px 10px 10px 0px;
 }
 
 .module_details_wrapper h3 {
@@ -77,22 +94,8 @@
 
 .class_details {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-}
-
-.class_wrapper {
-  display: grid;
-  grid-template-columns: 20vw 10vh;
-  padding: 0px 20px 0px 0px;
-}
-
-.class_wrapper p {
-  align-self: center;
-}
-
-.class_wrapper textarea {
-  resize: none;
-  height: 10vh;
 }
 
 
